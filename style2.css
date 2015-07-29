@@ -1,0 +1,140 @@
+body {
+    font-family : helvetica;
+    /*font-family:  serif;*/
+    font-size : 14px;
+}
+
+* {
+    box-sizing : border-box;
+}
+
+.container {
+    width: 600px;
+    margin: auto;
+
+}
+
+.score-box {
+    width : 100%;
+    box-shadow: 0px 5px 10px gray; //#888888;
+    float : left;
+    margin-bottom : 25px;
+    background-color : white;
+    padding : 30px 0px;
+
+}
+
+.team {
+    width : 35%;
+    float : left;
+    text-align : center;
+    /*background-color : black;*/
+    /*color: black;*/
+
+/*
+    background:
+linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+background-color: #131313;
+background-size: 20px 20px;
+
+background:
+radial-gradient(black 15%, transparent 16%) 0 0,
+radial-gradient(black 15%, transparent 16%) 8px 8px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+background-color:#282828;
+background-size:16px 16px;
+
+background-color: #070707;
+background-color: #080808;
+background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%),
+linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%);
+background-size:20px 20px;
+background-position: 0 0, 50px 50px;*/
+}
+
+.img-holder {
+    width : 100%;
+    float : left;
+    padding : 20px;
+}
+
+.team > span {
+    font-size : 1rem;
+    width : 100%;
+    float : left;
+    padding : 20px;
+    padding-top : 0;
+    /*color : white;*/
+}
+
+.info {
+    width : 30%;
+    float: left;
+    text-align : center;
+    /*background-color: lightgray;*/
+    /*padding : 27px 0;*/
+    /*padding-top : 30px;*/
+    /*background-color : #FE0000;
+    background-color : #4B89DC;
+    background-color : yellow;
+    background-color : #A2CC60;*/
+    color: black;
+    /*box-shadow: inset 0px 0px 5px black; //#000000;*/
+}
+
+.score {
+    width: 100%;
+    float: left;
+
+    padding : 30px 0;
+    font-size: 2rem;
+}
+
+.score > span {
+    padding:0 20px;
+}
+
+.left-score {
+    width: 50%;
+    float: left;
+    /*border-right : solid 1px white;*/
+    /*border-radius : 10px;*/
+    /*background-color : #444;*/
+
+    /*padding: 10px;*/
+}
+
+
+.right-score {
+    width: 50%;
+    float: left;
+    /*border-radius : 10px;*/
+    /*background-color : #444;*/
+
+}
+
+.time {
+    width: 100%;
+    float : left;
+    /*background-color: lightblue;*/
+    /*box-shadow: inset 0px 0px 7px #000000;*/
+}
+
+.time > span {
+    width : 100%;
+    font-size : 1rem;
+    color : #007fff;
+    font-weight : bold;
+    padding-top : 35px;
+}
+
+.progress {
+    width : 54%;
+    background-color : black;
+}
