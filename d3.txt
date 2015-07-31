@@ -61,7 +61,60 @@ Methods .enter.append("p") create as many <p>...</p> elements as the number of e
 since elements 10 and 12 are not part of the enter selection,
 no paragraph elements are created for them and they do not show up in the output.
 
+D3 creates a bunch of <foo> elements, one for each entry in the array. More importantly,
+it also associates the data for each entry in the array with that DOM element, as a __data__ property
+
+Anything not within selection.enter() or selection.exit() is considered part of the “update” operation.
+The “update” operation is also called immediately after “enter”, and updates can easily be animated
+
+
+
+By default, D3 uses the index of the data in the data array to compare the data set with DOM elements.
+This isn’t always ideal — but thankfully, you can pass a second (optional) parameter when assigning data to
+a selection (when calling the .data() function):
+
+var dataset = [{ id: 2553, value: 35 }, { id: 2554, value: 13 }];
+
+var lines = d3.select("body").append("svg").selectAll("line")
+  .data(dataset, function (d) { return d.id; });
 
 -------
 
 d3.range(upper-limit) -> returns an array
+
+-------
+
+var fs=["10px","20px","30px"];
+d3.selectAll("p").data(fs).style("font-size",function(d) {return d;})
+
+------
+
+d3.select("body").selectAll("*").remove()
+
+and remove everything below the body.
+
+--------
+d3.select("body").selectAll("wootwoot")
+.data(text).enter().append("p").html(String)
+
+This actually works. Why?
+There are actually 0 elements of type “wootwoot” in our document, which may or may not surprise you.
+There are still 3 items in the dataset, so enter() returns space for 3 new elements.
+the next append subsequently creates 3 p elements, which are populated by the html method.
+
+
+--------
+
+But what’s really interesting is what would happen if you were to run that statement again – nothing. try it. See?
+Why is that? Well, on your first go, at a point where there are no h1 elements yet, it works the standard way – you do a selectAll
+ that returns nothing, you bind a dataset with more elements,
+ then enter prepares space for the unmatched elements – 1 in our case – and then append creates that element.
+ You may notice that the html part doesn’t use the data.
+When you run it again, the selectAll finds one h1 element, there’s still one item in the dataset,
+so enter won’t find any unmatched element, so the subsequent append is ignored.
+
+So, you can run this kind of thing in a loop safely, it will only do what it’s supposed to do on the first go,
+it will be ignored afterwards. Don’t be afraid to use this construct for all the unique parts of your visualization,
+so you won’t have to worry about creating them multiple times.
+
+-----

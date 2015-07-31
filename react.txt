@@ -1,0 +1,34 @@
+bower install react --save
+
+------
+
+<script type="text/javascript" src="bower_components/react/react.js"></script>
+<script type="text/javascript" src="bower_components/react/JSXTransformer.js"></script>
+
+-----
+
+
+<script type="text/jsx">
+    /** @jsx React.DOM */
+
+-----
+To render a React Component, just create a local variable that starts with an upper-case letter:
+
+React's JSX uses the upper vs. lower case convention to distinguish between local component classes and HTML tags.
+
+------
+
+<img src="{this.props.teams.logos[0]}" <---- BAD
+
+VS
+
+<img src={this.props.teams.logos[0]}  <--- GOOD
+
+------
+
+render: function () {
+
+        return false; <--- do not render
+    }
+
+-------

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+
+        <link href='http://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="style3.css" media="screen" title="no title" charset="utf-8">
+
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    // main();
+                });
+        </script>
+
+        <script type="text/javascript" src="bower_components/react/react.js"></script>
+        <script type="text/javascript" src="bower_components/react/JSXTransformer.js"></script>
+        <script type="text/javascript" src="react-app.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+
+        <script type="text/jsx">
+            /** @jsx React.DOM */
+
+            var Comp1 = React.createClass({
+                render: function () {
+                    return (<h1>Merge 1</h1>);
+                }
+            });
+
+            React.render(<Comp1 />, document.getElementById('app'));
+
+            var Wrapper = React.createClass({
+                render: function () {
+                    return (
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm-4">
+                                    <ScoreBox teams={match.teams} score={match.score} time={match.time} />
+                                    // <EventsBox events={match.events} />
+                                </div>
+                                <div className="col-sm-7 col-sm-push-1">
+                                    <div className="row">
+                                        <div className="col-sm-1">
+
+                                        </div>
+                                        <div id='svg-holder' className="col-sm-10">
+                                            <svg id="svg-field" viewBox="0 0 1150 720" stroke="black" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                                <rect x="0" y="0" width="1150" height="720" fill="green" />
+                                                <path d="M 575,20 L 50,20 50,700 1100,700 1100,20 575,20 575,700 z" stroke="white" stroke-width="2" fill="green" />
+                                                <circle cx="575" cy="360" r="91.5" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <circle cx="575" cy="360" r="2" stroke="white" fill="white" />
+                                                <circle cx="160" cy="360" r="2" stroke="white" fill="white" />
+                                                <circle cx="990" cy="360" r="2" stroke="white" fill="white" />
+                                                <path d="M 50,324.4 L 40,324.4 40, 396.6 50 396.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <path d="M 1100,324.4 L 1110,324.4 1110,396.6 1100,396.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <path d="M 50,269.4 L 105,269.4 105,451.6 50 451.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <path d="M 1100,269.4 L 1045,269.4 1045,451.6 1100,451.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <path d="M 50,159.4 L 215,159.4 215,561.6 50 561.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <path d="M 1100,159.4 L 935,159.4 935,561.6 1100,561.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <path d="M 215,286.875 A 91.5,91.5 0 0,1 215,433.125 z" stroke="white" stroke-width="2" fill="green" />
+                                                <path d="M 935,286.875 A 91.5,91.5 0 0,0 935,433.125 z" stroke="white" stroke-width="2" fill="green" />
+                                                <path d="M 50,30 A 10,10 0 0,0 60,20 L 50,20 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <path d="M 60,700 A 10,10 0 0,0 50,690 L 50,700 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <path d="M 1100,690 A 10,10 0 0,0 1090,700 L 1100,700 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                                <path d="M 1090,20 A 10,10 0 0,0 1100,30 L 1100,20 z" stroke="white" stroke-width="2" fill-opacity="0" />
+                                            </svg>
+                                        </div>
+                                        <div className="col-sm-1">
+                                        </div>
+
+                                    </div>
+                                    <div className="row">
+                                        <div className="teams-details">
+                                            <HomePlayers players={match.players.homePlayers} playerNrs={match.players.homePlayersNr} />
+                                            <Stats stats={match.stats} />
+                                            <HomePlayers players={match.players.awayPlayers} playerNrs={match.players.awayPlayersNr} />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    );
+                }
+            });
+
+            var ScoreBox = React.createClass({
+                render: function () {
+                    return (
+                        <div className="row score-box">
+                            <div className="col-xs-4 team">
+                                <div className="row">
+                                    <div className="col-xs-12 img-holder">
+                                        <img src={this.props.teams.logos[0]} alt="" width="50" height="50" />
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-xs-12">
+                                        <span>{this.props.teams.names[0]}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-xs-4 info text-center">
+                                <div className="row score">
+                                    <div className="col-xs-6">
+                                        <span className={this.props.score.home > this.props.score.away ? 'winner' : 'loser'}>{this.props.score.home}</span>
+                                    </div>
+                                    <div className="col-xs-6">
+                                        <span className={this.props.score.home < this.props.score.away ? 'winner' : 'loser'}>{this.props.score.away}</span>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-xs-12 time">
+                                        <span>{this.props.time}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-xs-4 team">
+                                <div className="row">
+                                    <div className="col-xs-12 img-holder">
+                                        <img src={this.props.teams.logos[1]} alt="" width="50" height="50" />
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-xs-12">
+                                        <span>{this.props.teams.names[1]}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                }
+            });
+
+            var EventPlayer = React.createClass({
+                render: function () {
+
+                    if (this.props.location === 'home' && this.props.event.team === 1) {
+                        return false;
+                    }
+
+                    if (this.props.location === 'away' && this.props.event.team === 0) {
+                        return false;
+                    }
+
+                    if (this.props.event.type !== 3) {
+                        return (
+                            <span>{this.props.event.players[0]}</span>
+                        );
+                    } else {
+                        return (
+                            <div>
+                                <div className="row">
+                                    <span>{this.props.event.players[0]}</span>
+                                </div>
+                                <div className="row">
+                                    <span>{this.props.event.players[1]}</span>
+                                </div>
+                            </div>
+                        );
+                    }
+
+                    return false;
+                }
+            });
+
+            var EventImg = React.createClass({
+                render: function () {
+
+                    if (this.props.location === 'home' && this.props.event.team === 1) {
+                        return false;
+                    }
+
+                    if (this.props.location === 'away' && this.props.event.team === 0) {
+                        return false;
+                    }
+
+                    if (this.props.event.type === 0) {
+                        return (
+                            <img src="goal2.png" alt="" width="15" height="15" />
+                        );
+                    } else if (this.props.event.type === 1) {
+                        return (
+                            <img src="yellow-card.png" alt="yellow card" />
+                        );
+                    } else if (this.props.event.type === 2) {
+                        return (
+                            <img src="red-card.png" alt="red card" />
+                        );
+                    } else if (this.props.event.type === 3) {
+                        return (
+                            <div>
+                                <div className="row">
+                                    <img src="leave.png" alt="leave" />
+                                </div>
+                                <div className="row">
+                                    <img src="enter.png" alt="enter" />
+                                </div>
+                            </div>
+                        );
+                    }
+                    return false;
+                }
+            });
+
+            var EventDes = React.createClass({
+                render: function () {
+                        return (
+                            <div className="row">
+                                <div className="col-xs-4 left-details">
+                                    <EventPlayer event={this.props.event} location="home" />
+                                </div>
+                                <div className="col-xs-1 left-details">
+                                    <EventImg event={this.props.event} location="home" />
+                                </div>
+                                <div className="col-xs-2 center-details">
+                                    <span>{this.props.event.time}</span>
+                                </div>
+                                <div className="col-xs-1 right-details">
+                                    <EventImg event={this.props.event} location="away" />
+                                </div>
+                                <div className="col-xs-4 right-details">
+                                    <EventPlayer event={this.props.event} location="away" />
+                                </div>
+                            </div>
+                        );
+                    }
+
+                }
+            );
+
+            var EventsBox = React.createClass({
+                render : function() {
+                    var events = this.props.events.map(function (event) {
+                        return (<EventDes event={event} />);
+                    }, this);
+
+                    return (
+                        <div className="row details-row">
+                            <div className="col-xs-12 details">
+                                {events}
+                            </div>
+                        </div>
+                    );
+                }
+            });
+
+            var HomePlayer = React.createClass({
+                render: function () {
+                    return (
+                        <div className="row">
+                            <div className="col-sm-10">
+                                <span>{this.props.playerName}</span>
+                            </div>
+                            <div className="col-sm-2">
+                                <span className="tshirt-nr">{this.props.playerNr}</span>
+                            </div>
+                        </div>
+                    );
+                }
+            });
+
+            var HomePlayers = React.createClass({
+                render: function () {
+                    var players = this.props.players.map(function (player, i) {
+                        return <HomePlayer playerName={player} playerNr={this.props.playerNrs[i]} />
+                    }, this);
+
+                    return (
+                        <div className="col-sm-4">
+                            {players}
+                        </div>
+                    );
+                }
+            });
+
+            var Stat = React.createClass({
+                render: function () {
+                    return (
+                            <div className="row">
+                                <div className="col-sm-3"><span>{this.props.stat.home}</span></div>
+                                <div className="col-sm-6"><span>{this.props.stat.name}</span></div>
+                                <div className="col-sm-3"><span>{this.props.stat.away}</span></div>
+                            </div>
+                    );
+                }
+            });
+
+
+            var Stats = React.createClass({
+                render: function () {
+                    var stats = this.props.stats.map(function (stat, i) {
+                        return <Stat stat={stat} />
+                    }, this);
+
+                    return (
+                        <div className="col-sm-4">
+                            {stats}
+                        </div>
+                    );
+                }
+            });
+
+            React.render(<Wrapper />, document.getElementById('app'));
+
+        </script>
+    </head>
+    <body>
+
+    <div id="app">
+
+    </div>
+
+    </body>
+</html>
