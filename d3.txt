@@ -1,0 +1,67 @@
+
+d3.select('body')
+d3.selectAll('body')
+
+elem.attr('key', 'value')
+elem.attr({key1 : value1, key2 : value2})
+elem.style({key : value})
+
+elem.classed('class-name', true) //true - add, false - remove
+
+elem.html('html content')
+elem.append('new elem')
+elem.remove()
+
+--------
+
+var dataset = [8, 48, 14, 31, 23];
+
+var svg = d3.select('body').append('svg').attr({
+    width : 500px,
+    height : 500px
+});
+
+svg.selectAll('rect')
+    .data(dataset)  // binds data to the previous selection
+    .enter()  // creates placeholders to insert data
+    .append('rect')
+    .attr({
+        x: function (d, i) {return i * 100},
+        y: 0,
+        width: 100,
+        height: function(d) {return d;},
+        fill: 'orange'
+    });
+
+-------
+How selection works:
+
+The keys determine the enter selection in the following manner:
+the keys of elements in the specified data array (which, in our examples is pdata) are compared with keys of the
+elements in the existing selection (the selection returned by .selectAll("p") method).
+Any element in the specified data array whose key is different from keys of all the the existing elements,
+becomes a part of the enter selection. If the key of a new element matches the key of one of the existing elements
+then it is NOT a part of the enter selection.
+
+Neither example above specifies an explicit key function.
+Hence, each elements key is its index in the array.
+In Example 1, selectAll("p") returns an empty array;
+there are no existing elements and consequently set of keys of existing elements is empty.
+The keys of elements in pdata, i.e., elements 10, 12, 6, 8 and 15 are 0, 1, 2, 3, and 4 respectively.
+Since all these have keys that are different from the keys of all the existing elements, they all become part of the enter selection.
+
+On the other hand, in Example 2, .selectAll("p") returns an array with two elements with keys 0 and 1 respectively.
+The keys of elements in pdata, i.e., elements 10, 12, 6, 8 and 15 are 0, 1, 2, 3, and 4 respectively.
+Since elements 10 and 12 have the same keys as keys of elements in the existing selection, 10 and 12 do not become
+part of the enter selection.
+
+Methods .enter.append("p") create as many <p>...</p> elements as the number of elements in the enter selection
+(see the previous step). The argument of .append() specifies the type of element to be created.
+
+since elements 10 and 12 are not part of the enter selection,
+no paragraph elements are created for them and they do not show up in the output.
+
+
+-------
+
+d3.range(upper-limit) -> returns an array

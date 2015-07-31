@@ -112,11 +112,37 @@ body {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.30) 1%, rgba(255, 255, 255, 0.15) 15%);*/
 }
 
-svg {
+#svg-field {
     width: 97%;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
     transform: perspective( 400px ) rotateX(45deg);
 }
+
+#svg-names {
+    position: absolute;
+    left: 0;
+    font-size: 3rem;
+
+    /*transform-style: preserve-3d;
+    perspective-origin: 0% 0%;
+    transform-origin: 50% 50%;*/
+    /*transform:   perspective( 400px ) rotateX(45deg);*/
+}
+
+image {
+    position: absolute;
+    display: block;
+    /*transform-style: preserve-3d;
+    perspective-origin: 50% 50%;
+    transform-origin: 50% 50%;*/
+    /*transform: perspective( 400px ) rotate(2deg);*/
+    /*transform: perspective( 400px ) rotateX(-45deg);*/
+    /*transform:perspective( 400px ) rotateX(-10deg) rotateY(0deg) rotateZ(20deg); */
+    /*transform: rotate(15deg) translate(250px, 50px);*/
+    /*translate(50%, 100%);*/
+    /*transform: perspective(400px) skewX(5deg) skewY(2deg) rotate(0deg);*/
+}
+
 
 @media (max-width: 640px) {
     .left-details {

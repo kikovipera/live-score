@@ -10,7 +10,15 @@
 
     <link rel="stylesheet" href="style3.css" media="screen" title="no title" charset="utf-8">
 
-    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js">
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                main();
+            });
     </script>
 </head>
 
@@ -134,10 +142,10 @@
                     <div class="col-sm-1">
 
                     </div>
-                    <div class="col-sm-10">
+                    <div id='svg-holder' class="col-sm-10">
                         <!-- svg src: https://upload.wikimedia.org/wikipedia/commons/b/b9/Soccer_field_-_empty.svg -->
                         <!-- <svg width="11cm" height="7cm" viewBox="0 0 1150 720" stroke="white" version="1.1" xmlns="http://www.w3.org/2000/svg"> -->
-                        <svg viewBox="0 0 1150 720" stroke="white" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="svg-field" viewBox="0 0 1150 720" stroke="black" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0" y="0" width="1150" height="720" fill="green" />
                             <path d="M 575,20 L 50,20 50,700 1100,700 1100,20 575,20 575,700 z" stroke="white" stroke-width="2" fill="green" />
                             <circle cx="575" cy="360" r="91.5" stroke="white" stroke-width="2" fill-opacity="0" />
@@ -157,6 +165,17 @@
                             <path d="M 1100,690 A 10,10 0 0,0 1090,700 L 1100,700 z" stroke="white" stroke-width="2" fill-opacity="0" />
                             <path d="M 1090,20 A 10,10 0 0,0 1100,30 L 1100,20 z" stroke="white" stroke-width="2" fill-opacity="0" />
                         </svg>
+
+                        <!-- <svg id="svg-names2" viewBox="0 0 1150 720"> -->
+                            <!-- <rect x="100" y="100" width="70" height="15" fill="white" />
+                            <rect x="100" y="100" width="15" height="15" fill="black" /> -->
+                            <!-- <image xlink:href="barcelona-tshirt.png" x="150" y="150" height="75px" width="75px"/>
+                            <image xlink:href="barcelona-tshirt.png" x="250" y="250" height="75px" width="75px"/> -->
+                            <!-- <circle cx="185" cy="210" r="15" stroke="white" fill="white" /> -->
+                            <!-- <text x="180" y="215" fill="white" >1</text> -->
+
+                            <!-- <image xlink:href="real-tshirt.png" x="650" y="250" height="75px" width="75px"/> -->
+                        <!-- </svg> -->
                     </div>
                     <div class="col-sm-1"></div>
 
