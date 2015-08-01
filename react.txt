@@ -32,3 +32,220 @@ render: function () {
     }
 
 -------
+//// Input (JSX):
+var app = <Nav color="blue"><Profile>click</Profile></Nav>;
+// Is equivalent to this Output (JS):
+var app = React.createElement(
+  Nav,
+  {color:"blue"},
+  React.createElement(Profile, null, "click")
+);
+
+------
+Mutating Props is Bad, mkay
+
+If you don't know which properties you want to set, you might be tempted to add them onto the object later:
+
+  var component = <Component />;
+  component.props.foo = x; // bad
+  component.props.bar = y; // also bad
+
+This is an anti-pattern because it means that we can't help you check the right propTypes until way later.
+This means that your propTypes errors end up with a cryptic stack trace.
+
+The props should be considered immutable. Mutating the props object somewhere else could cause unexpected consequences
+so ideally it would be a frozen object at this point.
+
+---------
+
+Custom HTML Attributes
+
+If you pass properties to native HTML elements that do not exist in the HTML specification, React will not render them. If you want to use a custom attribute, you should prefix it with data-.
+
+<div data-custom-attribute="foo" />
+
+Web Accessibility attributes starting with aria- will be rendered properly.
+
+<div aria-hidden={true} />
+
+---------
+In React, an owner is the component that sets the props of other components.
+-----
+
+Transferring Props: A Shortcut
+
+A common type of React component is one that extends a basic HTML element in a simple way.
+Often you'll want to copy any HTML attributes passed to your component to the underlying HTML element to save typing.
+You can use the JSX spread syntax to achieve this:
+
+var CheckLink = React.createClass({
+  render: function() {
+    // This takes any props passed to CheckLink and copies them to <a>
+    return <a {...this.props}>{'√ '}{this.props.children}</a>;
+  }
+});
+
+React.render(
+  <CheckLink href="/checked.html">
+    Click here!
+  </CheckLink>,
+  document.getElementById('example')
+);
+
+-------
+
+propTypes: {
+   children: React.PropTypes.element.isRequired
+ },
+
+ ------
+
+ Mixins #
+
+Components are the best way to reuse code in React, but sometimes very different components may share some common functionality.
+These are sometimes called cross-cutting concerns. React provides mixins to solve this problem.
+
+One common use case is a component wanting to update itself on a time interval.
+It's easy to use setInterval(), but it's important to cancel your interval when you don't need it anymore to save memory.
+React provides lifecycle methods that let you know when a component is about to be created or destroyed.
+Let's create a simple mixin that uses these methods to provide an easy setInterval() function that will automatically
+get cleaned up when your component is destroyed.
+
+var SetIntervalMixin = {
+  componentWillMount: function() {
+    this.intervals = [];
+  },
+  setInterval: function() {
+    this.intervals.push(setInterval.apply(null, arguments));
+  },
+  componentWillUnmount: function() {
+    this.intervals.map(clearInterval);
+  }
+};
+
+var TickTock = React.createClass({
+  mixins: [SetIntervalMixin], // Use the mixin
+  getInitialState: function() {
+    return {seconds: 0};
+  },
+  componentDidMount: function() {
+    this.setInterval(this.tick, 1000); // Call a method on the mixin
+  },
+  tick: function() {
+    this.setState({seconds: this.state.seconds + 1});
+  },
+  render: function() {
+    return (
+      <p>
+        React has been running for {this.state.seconds} seconds.
+      </p>
+    );
+  }
+});
+
+React.render(
+  <TickTock />,
+  document.getElementById('example')
+);
+
+A nice feature of mixins is that if a component is using multiple mixins and several mixins define the same lifecycle method
+(i.e. several mixins want to do some cleanup when the component is destroyed), all of the lifecycle methods are guaranteed
+ to be called. Methods defined on mixins run in the order mixins were listed, followed by a method call on the component.
+
+ ----------
+
+ react without jsx
+
+ var child1 = React.createElement('li', null, 'First Text Content');
+var child2 = React.createElement('li', null, 'Second Text Content');
+var root = React.createElement('ul', { className: 'my-list' }, child1, child2);
+React.render(root, document.getElementById('example'));
+
+or
+
+var root = React.DOM.ul({ className: 'my-list' },
+             React.DOM.li(null, 'Text Content')
+           );
+
+
+
+-------
+
+
+// Let's create a "real-time search" component
+
+var SearchExample = React.createClass({
+
+    getInitialState: function(){
+        return { searchString: '' };
+    },
+
+    handleChange: function(e){
+
+        // If you comment out this line, the text box will not change its value.
+        // This is because in React, an input cannot change independently of the value
+        // that was assigned to it. In our case this is this.state.searchString.
+
+        this.setState({searchString:e.target.value});
+    },
+
+    render: function() {
+
+        var libraries = this.props.items,
+            searchString = this.state.searchString.trim().toLowerCase();
+
+
+        if(searchString.length > 0){
+
+            // We are searching. Filter the results.
+
+            libraries = libraries.filter(function(l){
+                return l.name.toLowerCase().match( searchString );
+            });
+
+        }
+
+        return <div>
+                    <input type="text" value={this.state.searchString} onChange={this.handleChange} placeholder="Type here" />
+
+                    <ul>
+
+                        { libraries.map(function(l){
+                            return <li>{l.name} <a href={l.url}>{l.url}</a></li>
+                        }) }
+
+                    </ul>
+
+                </div>;
+
+    }
+});
+
+
+var libraries = [
+
+    { name: 'Backbone.js', url: 'http://documentcloud.github.io/backbone/'},
+    { name: 'AngularJS', url: 'https://angularjs.org/'},
+    { name: 'jQuery', url: 'http://jquery.com/'},
+    { name: 'Prototype', url: 'http://www.prototypejs.org/'},
+    { name: 'React', url: 'http://facebook.github.io/react/'},
+    { name: 'Ember', url: 'http://emberjs.com/'},
+    { name: 'Knockout.js', url: 'http://knockoutjs.com/'},
+    { name: 'Dojo', url: 'http://dojotoolkit.org/'},
+    { name: 'Mootools', url: 'http://mootools.net/'},
+    { name: 'Underscore', url: 'http://documentcloud.github.io/underscore/'},
+    { name: 'Lodash', url: 'http://lodash.com/'},
+    { name: 'Moment', url: 'http://momentjs.com/'},
+    { name: 'Express', url: 'http://expressjs.com/'},
+    { name: 'Koa', url: 'http://koajs.com/'},
+
+];
+
+// Render the SearchExample component on the page
+
+React.renderComponent(
+    <SearchExample items={ libraries } />,
+    document.body
+);
+
+--------
