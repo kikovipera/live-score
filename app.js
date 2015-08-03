@@ -130,7 +130,8 @@ function displayTShirts(teamsPositions, elementId) {
         .attr('xlink:href', teamsPositions.t2ShirtImg)
         .attr({
             x: function(d, i, j) {
-                return (svgWidth - j * widthStep2) + ((teamsPositions.t2ShirtNrArr.length - j) * (0.3) * (i / teamsPositions.t2ShirtNrArr[j].length) * 250);
+                return (svgWidth - j * widthStep2 + widthStep2/2) + ((teamsPositions.t2ShirtNrArr.length - j ) * (0.3) * ((i) / teamsPositions.t2ShirtNrArr[j].length - 0.5) * 200) + (j === 0 ? 100 : 0);
+                // return (svgWidth - j * widthStep2 - widthStep2/2);// + (i / teamsPositions.t2ShirtNrArr[j].length ) * 250 - ( (j) / teamsPositions.t2ShirtNrArr.length ) * 150;
             },
             y: function(d, i, j) {
                 return (i * heightSteps2[j]) + heightSteps2[j] / 2;
