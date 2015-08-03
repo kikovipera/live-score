@@ -54,7 +54,8 @@ function displayTShirts(teamsPositions, elementId) {
         .attr('xlink:href', teamsPositions.t1ShirtImg)
         .attr({
             x: function(d, i, j) {
-                return (j * widthStep1) - ((teamsPositions.t1ShirtNrArr.length - j) * (0.3) * (i / teamsPositions.t1ShirtNrArr[j].length) * 250);
+                return (j * widthStep1 - widthStep1/2) - ((teamsPositions.t1ShirtNrArr.length - j ) * (0.3) * ((i) / teamsPositions.t1ShirtNrArr[j].length - 0.5) * 250) - (j === 0 ? 100 : 0);
+                // return (j * widthStep1) - ((teamsPositions.t1ShirtNrArr.length - j) * (0.3) * (i / teamsPositions.t1ShirtNrArr[j].length) * 250);
             },
             y: function(d, i, j) {
                 return (i * heightSteps1[j]) + heightSteps1[j] / 2;
@@ -130,7 +131,7 @@ function displayTShirts(teamsPositions, elementId) {
         .attr('xlink:href', teamsPositions.t2ShirtImg)
         .attr({
             x: function(d, i, j) {
-                return (svgWidth - j * widthStep2 + widthStep2/2) + ((teamsPositions.t2ShirtNrArr.length - j ) * (0.3) * ((i) / teamsPositions.t2ShirtNrArr[j].length - 0.5) * 200) + (j === 0 ? 100 : 0);
+                return (svgWidth - j * widthStep2 + widthStep2/2) + ((teamsPositions.t2ShirtNrArr.length - j ) * (0.3) * ((i) / teamsPositions.t2ShirtNrArr[j].length - 0.5) * 250) + (j === 0 ? 100 : 0);
                 // return (svgWidth - j * widthStep2 - widthStep2/2);// + (i / teamsPositions.t2ShirtNrArr[j].length ) * 250 - ( (j) / teamsPositions.t2ShirtNrArr.length ) * 150;
             },
             y: function(d, i, j) {

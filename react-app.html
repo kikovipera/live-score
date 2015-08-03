@@ -261,9 +261,9 @@
                 render: function () {
                     return (
                             <div className="row">
-                                <div className="col-sm-3"><span>{this.props.stat.home}</span></div>
-                                <div className="col-sm-6"><span>{this.props.stat.name}</span></div>
-                                <div className="col-sm-3"><span>{this.props.stat.away}</span></div>
+                                <div className="col-sm-2"><span>{this.props.stat.home}</span></div>
+                                <div className="col-sm-8"><span>{this.props.stat.name}</span></div>
+                                <div className="col-sm-2"><span>{this.props.stat.away}</span></div>
                             </div>
                     );
                 }
@@ -277,7 +277,7 @@
                     }, this);
 
                     return (
-                        <div className="col-sm-4">
+                        <div className="col-sm-4 stats-col">
                             {stats}
                         </div>
                     );

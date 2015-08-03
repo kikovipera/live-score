@@ -104,12 +104,30 @@ body {
 .teams-details {
     color: white;
     padding-top: 30px;
-    font-size: 1rem;
+    font-size: 1.25rem;
     /*box-shadow: 0px 1px 10px black;
     background-color: rgba(255, 255, 255, 0.15);
     margin-top: 5px;
     color: white;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.30) 1%, rgba(255, 255, 255, 0.15) 15%);*/
+}
+
+.teams-details .row {
+    /*text-align: center;*/
+    border-bottom:  1px dotted white;
+}
+
+.tshirt-nr {
+    /*background-color: white;*/
+    color: yellow;
+    /*padding: 2px 1px;*/
+    text-align: center;
+}
+
+.stats-col {
+    background-color: white;
+    color: black;
+    text-align: center;
 }
 
 #svg-field {
