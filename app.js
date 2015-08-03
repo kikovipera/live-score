@@ -12,7 +12,9 @@ var teamsPositions = {
 startFrom: 'left' or 'right'
 */
 
-function displayTShirts(teamsPositions, elementId, maxWidth, maxHeight) {
+var aaa = 'gigi';
+
+function displayTShirts(teamsPositions, elementId) {
     var svg = d3.select(elementId).append('svg');
 
     svg.attr({
@@ -139,27 +141,129 @@ function displayTShirts(teamsPositions, elementId, maxWidth, maxHeight) {
         });
 }
 
-function main() {
-    var teamsPositions = {
-        t1ShirtImg: 'barcelona-tshirt.png',
-        t1ShirtNrArr: [
-            ['1'],
-            ['3', '15', '12', '5'],
-            ['6', '4', '11', '10'],
-            ['24', '8']
-        ],
-        t2ShirtImg: 'real-tshirt.png',
-        t2ShirtNrArr: [
-            ['71'],
-            ['3', '15'],
-            ['28', '12', '5'],
-            ['6', '4', '11', '10', '33'],
-            ['8']
-        ]
-    };
+function createField(containerID) {
+    var svg = d3.select(containerID).append('svg');
 
-    displayTShirts(teamsPositions, '#svg-holder');
+    svg.attr({
+        viewBox: '0 0 1150 720',
+        id: 'svg-field',
+        stroke: 'black'
+    });
 
+    svg.append('rect').attr({
+        x: 0,
+        y: 0,
+        width: 1150,
+        height: 720,
+        fill: 'green'
+    });
+    svg.append('path').attr({
+        d : 'M 575,20 L 50,20 50,700 1100,700 1100,20 575,20 575,700 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        fill : 'green'
+    });
+    svg.append('circle').attr({
+        cx: 575,
+        cy: 360,
+        r: 91.5,
+        stroke: 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('circle').attr({
+        cx: 575,
+        cy: 360,
+        r: 2,
+        stroke: 'white',
+        fill : 'white'
+    });
+    svg.append('circle').attr({
+        cx: 160,
+        cy: 360,
+        r: 2,
+        stroke: 'white',
+        fill : 'white'
+    });
+    svg.append('circle').attr({
+        cx: 990,
+        cy: 360,
+        r: 2,
+        stroke: 'white',
+        fill : 'white'
+    });
+    svg.append('path').attr({
+        d : 'M 50,324.4 L 40,324.4 40, 396.6 50 396.6 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('path').attr({
+        d : 'M 1100,324.4 L 1110,324.4 1110,396.6 1100,396.6 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('path').attr({
+        d : 'M 50,269.4 L 105,269.4 105,451.6 50 451.6 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('path').attr({
+        d : 'M 1100,269.4 L 1045,269.4 1045,451.6 1100,451.6 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('path').attr({
+        d : 'M 50,159.4 L 215,159.4 215,561.6 50 561.6 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('path').attr({
+        d : 'M 1100,159.4 L 935,159.4 935,561.6 1100,561.6 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('path').attr({
+        d : 'M 215,286.875 A 91.5,91.5 0 0,1 215,433.125 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        fill : 'green'
+    });
+    svg.append('path').attr({
+        d : 'M 935,286.875 A 91.5,91.5 0 0,0 935,433.125 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        fill : 'green'
+    });
+    svg.append('path').attr({
+        d : 'M 50,30 A 10,10 0 0,0 60,20 L 50,20 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('path').attr({
+        d : 'M 60,700 A 10,10 0 0,0 50,690 L 50,700 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('path').attr({
+        d : 'M 1100,690 A 10,10 0 0,0 1090,700 L 1100,700 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
+    svg.append('path').attr({
+        d : 'M 1090,20 A 10,10 0 0,0 1100,30 L 1100,20 z',
+        stroke : 'white',
+        "stroke-width" : 2,
+        "fill-opacity" : 0
+    });
 }
 
 //event types: goal, yellow card, red card, substitution
