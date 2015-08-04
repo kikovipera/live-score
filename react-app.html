@@ -54,9 +54,9 @@
                                     </div>
                                     <div className="row">
                                         <div className="teams-details">
-                                            <HomePlayers players={match.players.homePlayers} playerNrs={match.players.homePlayersNr} />
+                                            <HomePlayers players={match.players.homePlayers} playerNrs={match.players.homePlayersNr} team="home" />
                                             <Stats stats={match.stats} />
-                                            <HomePlayers players={match.players.awayPlayers} playerNrs={match.players.awayPlayersNr} />
+                                            <HomePlayers players={match.players.awayPlayers} playerNrs={match.players.awayPlayersNr} team="away"/>
                                         </div>
                                     </div>
 
@@ -230,27 +230,40 @@
 
             var HomePlayer = React.createClass({
                 render: function () {
-                    return (
-                        <div className="row">
-                            <div className="col-sm-10">
-                                <span>{this.props.playerName}</span>
+                    if (this.props.team === 'home') {
+                        return (
+                            <div className="row">
+                                <div className="col-sm-2 tshirt-nr">
+                                    <span className="">{this.props.playerNr}</span>
+                                </div>
+                                <div className="col-sm-10">
+                                    <span>{this.props.playerName}</span>
+                                </div>
                             </div>
-                            <div className="col-sm-2">
-                                <span className="tshirt-nr">{this.props.playerNr}</span>
+                        );
+                    } else {
+                        return (
+                            <div className="row">
+                                <div className="col-sm-10">
+                                    <span>{this.props.playerName}</span>
+                                </div>
+                                <div className="col-sm-2 tshirt-nr">
+                                    <span className="">{this.props.playerNr}</span>
+                                </div>
                             </div>
-                        </div>
-                    );
+                        );
+                    }
                 }
             });
 
             var HomePlayers = React.createClass({
                 render: function () {
                     var players = this.props.players.map(function (player, i) {
-                        return <HomePlayer playerName={player} playerNr={this.props.playerNrs[i]} />
+                        return <HomePlayer playerName={player} playerNr={this.props.playerNrs[i]} team={this.props.team} />
                     }, this);
 
                     return (
-                        <div className="col-sm-4">
+                        <div className={'col-sm-4 list-players ' + 'list-players-' + this.props.team}>
                             {players}
                         </div>
                     );
@@ -261,9 +274,9 @@
                 render: function () {
                     return (
                             <div className="row">
-                                <div className="col-sm-2"><span>{this.props.stat.home}</span></div>
-                                <div className="col-sm-8"><span>{this.props.stat.name}</span></div>
-                                <div className="col-sm-2"><span>{this.props.stat.away}</span></div>
+                                <div className="col-sm-3"><span>{this.props.stat.home}</span></div>
+                                <div className="col-sm-6"><span>{this.props.stat.name}</span></div>
+                                <div className="col-sm-3"><span>{this.props.stat.away}</span></div>
                             </div>
                     );
                 }
@@ -277,7 +290,7 @@
                     }, this);
 
                     return (
-                        <div className="col-sm-4 stats-col">
+                        <div className="col-sm-4 stats-col list-players">
                             {stats}
                         </div>
                     );
