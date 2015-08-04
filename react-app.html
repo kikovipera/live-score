@@ -39,18 +39,16 @@
                             <div className="row">
                                 <div className="col-sm-4">
                                     <ScoreBox teams={match.teams} score={match.score} time={match.time} />
-                                    // <EventsBox events={match.events} />
+                                    <EventsBox events={match.events} />
                                 </div>
                                 <div className="col-sm-7 col-sm-push-1">
                                     <div className="row">
                                         <div className="col-sm-1">
-
                                         </div>
                                         <div id='svg-holder' className="col-sm-10">
                                         </div>
                                         <div className="col-sm-1">
                                         </div>
-
                                     </div>
                                     <div className="row">
                                         <div className="teams-details">
@@ -174,10 +172,10 @@
                         return (
                             <div>
                                 <div className="row">
-                                    <img src="leave.png" alt="leave" />
+                                    <img className="small-img" src="leave.png" alt="leave" />
                                 </div>
                                 <div className="row">
-                                    <img src="enter.png" alt="enter" />
+                                    <img className="small-img" src="enter.png" alt="enter" />
                                 </div>
                             </div>
                         );
@@ -197,7 +195,7 @@
                                     <EventImg event={this.props.event} location="home" />
                                 </div>
                                 <div className="col-xs-2 center-details">
-                                    <span>{this.props.event.time}</span>
+                                    <span>{this.props.event.time + '\''}</span>
                                 </div>
                                 <div className="col-xs-1 right-details">
                                     <EventImg event={this.props.event} location="away" />
@@ -233,10 +231,10 @@
                     if (this.props.team === 'home') {
                         return (
                             <div className="row">
-                                <div className="col-sm-2 tshirt-nr">
+                                <div className="col-xs-2 tshirt-nr">
                                     <span className="">{this.props.playerNr}</span>
                                 </div>
-                                <div className="col-sm-10">
+                                <div className="col-xs-10">
                                     <span>{this.props.playerName}</span>
                                 </div>
                             </div>
@@ -244,10 +242,10 @@
                     } else {
                         return (
                             <div className="row">
-                                <div className="col-sm-10">
+                                <div className="col-xs-10">
                                     <span>{this.props.playerName}</span>
                                 </div>
-                                <div className="col-sm-2 tshirt-nr">
+                                <div className="col-xs-2 tshirt-nr">
                                     <span className="">{this.props.playerNr}</span>
                                 </div>
                             </div>
@@ -274,9 +272,9 @@
                 render: function () {
                     return (
                             <div className="row">
-                                <div className="col-sm-3"><span>{this.props.stat.home}</span></div>
-                                <div className="col-sm-6"><span>{this.props.stat.name}</span></div>
-                                <div className="col-sm-3"><span>{this.props.stat.away}</span></div>
+                                <div className="col-xs-3"><span>{this.props.stat.home}</span></div>
+                                <div className="col-xs-6"><span>{this.props.stat.name}</span></div>
+                                <div className="col-xs-3"><span>{this.props.stat.away}</span></div>
                             </div>
                     );
                 }
