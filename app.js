@@ -54,7 +54,8 @@ function displayTShirts(teamsPositions, elementId) {
         .attr('xlink:href', teamsPositions.t1ShirtImg)
         .attr({
             x: function(d, i, j) {
-                return (j * widthStep1 - widthStep1/2) - ((teamsPositions.t1ShirtNrArr.length - j ) * (0.3) * ((i) / teamsPositions.t1ShirtNrArr[j].length - 0.5) * 250) - (j === 0 ? 100 : 0);
+                return (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2)  * 1/svgHeight * (150));
+                // return (j * widthStep1 - widthStep1/4) - ((teamsPositions.t1ShirtNrArr.length - j ) * (0.3) * ((i) / teamsPositions.t1ShirtNrArr[j].length - 0.5) * 250) - (j === 0 ? 100 : 0);
                 // return (j * widthStep1) - ((teamsPositions.t1ShirtNrArr.length - j) * (0.3) * (i / teamsPositions.t1ShirtNrArr[j].length) * 250);
             },
             y: function(d, i, j) {
@@ -78,14 +79,14 @@ function displayTShirts(teamsPositions, elementId) {
         .attr({
             fill: 'black',
             x: function(d, i, j) {
-                return (d < 10 ? -30 : -20) + (j * widthStep1) - ((teamsPositions.t1ShirtNrArr.length - j) * (0.3) * (i / teamsPositions.t1ShirtNrArr[j].length) * 250);
+                return (d < 10 ? -30 : -20) + (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2)  * 1/svgHeight * (150));
             },
             y: function(d, i, j) {
                 return 30 + (i * heightSteps1[j]) + heightSteps1[j] / 2;
             },
             width: 35,
             height: 35,
-            transform: 'translate(50, 35)'
+            transform: 'translate(50, 36)'
         });
 
     g1.selectAll('text')
@@ -104,7 +105,7 @@ function displayTShirts(teamsPositions, elementId) {
         .attr({
             fill: 'white',
             x: function(d, i, j) {
-                return -20 + (j * widthStep1) - ((teamsPositions.t1ShirtNrArr.length - j) * (0.3) * (i / teamsPositions.t1ShirtNrArr[j].length) * 250);
+                return -20 + (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2)  * 1/svgHeight * (150));
             },
             y: function(d, i, j) {
                 return 60 + (i * heightSteps1[j]) + heightSteps1[j] / 2;
@@ -131,7 +132,8 @@ function displayTShirts(teamsPositions, elementId) {
         .attr('xlink:href', teamsPositions.t2ShirtImg)
         .attr({
             x: function(d, i, j) {
-                return (svgWidth - j * widthStep2 + widthStep2/2) + ((teamsPositions.t2ShirtNrArr.length - j ) * (0.3) * ((i) / teamsPositions.t2ShirtNrArr[j].length - 0.5) * 250) + (j === 0 ? 100 : 0);
+                return (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2)  * 1/svgHeight * 250);
+                // return (svgWidth - j * widthStep2 + widthStep2/4) + ((teamsPositions.t2ShirtNrArr.length - j ) * (0.3) * ((i) / teamsPositions.t2ShirtNrArr[j].length - 0.5) * 250) + (j === 0 ? 120 : 0);
                 // return (svgWidth - j * widthStep2 - widthStep2/2);// + (i / teamsPositions.t2ShirtNrArr[j].length ) * 250 - ( (j) / teamsPositions.t2ShirtNrArr.length ) * 150;
             },
             y: function(d, i, j) {
@@ -141,6 +143,54 @@ function displayTShirts(teamsPositions, elementId) {
             height: '75px',
             transform: 'translate(-130, 35)'
         });
+        g2.selectAll('rect')
+            .data(teamsPositions.t2ShirtNrArr)
+            .enter()
+            .append('g')
+            .selectAll('rect')
+            .data(function(d, i, j) {
+                return d;
+            })
+            .enter()
+            .append('rect')
+            .attr({
+                fill: 'black',
+                x: function(d, i, j) {
+                    return (d < 10 ? 30 : 20) + (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2)  * 1/svgHeight * (250));
+                },
+                y: function(d, i, j) {
+                    return 30 + (i * heightSteps2[j]) + heightSteps2[j] / 2;
+                },
+                width: 35,
+                height: 35,
+                transform: 'translate(-90, 36)'
+            });
+
+        g2.selectAll('text')
+            .data(teamsPositions.t2ShirtNrArr)
+            .enter()
+            .append('g')
+            .selectAll('text')
+            .data(function(d, i, j) {
+                return d;
+            })
+            .enter()
+            .append('text')
+            .text(function(d) {
+                return d;
+            })
+            .attr({
+                fill: 'white',
+                x: function(d, i, j) {
+                    return (d < 10 ? 30 : 10) + (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2)  * 1/svgHeight * (250));
+                },
+                y: function(d, i, j) {
+                    return 60 + (i * heightSteps2[j]) + heightSteps2[j] / 2;
+                },
+                width: '75px',
+                height: '75px',
+                transform: 'translate(-80, 35)'
+            });
 }
 
 function createField(containerID) {
@@ -353,6 +403,13 @@ var match = {
             ['22', '10', '7'],
             ['9']
         ]
+        // t2ShirtNrArr: [
+        //     ['1'],
+        //     ['15', '3', '4', '12', '22'],
+        //     ['24'],
+        //     ['22', '10', '7'],
+        //     ['9']
+        // ]
     },
     players: {
         homePlayers: ['V. Valdez', 'D. Alves', 'C. Puyol', 'G. Pique', 'E. Abidal', 'Xavi', 'S. Busquets', 'A. Iniesta', 'A. Sanchez', 'L. Messi', 'F. Fabregas'],
