@@ -185,11 +185,13 @@ function displayTShirts(teamsPositions, containerId, showTShirtNr, callbackPlaye
             .attr({
                 fill: 'black',
                 x: function(d, i, j) {
-                    return (d < 10 ? -30 : -20) + (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
+                    return (d < 10 ? -31 : -22) + (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
                 },
                 y: function(d, i, j) {
-                    return 30 + (i * heightSteps1[j]) + heightSteps1[j] / 2;
+                    return 32 + (i * heightSteps1[j]) + heightSteps1[j] / 2;
                 },
+                rx: 10,
+                ry: 10,
                 width: 35,
                 height: 35,
                 transform: 'translate(50, 36)'
@@ -269,6 +271,8 @@ function displayTShirts(teamsPositions, containerId, showTShirtNr, callbackPlaye
                 y: function(d, i, j) {
                     return 30 + (i * heightSteps2[j]) + heightSteps2[j] / 2;
                 },
+                rx: 10,
+                ry: 10,
                 width: 35,
                 height: 35,
                 transform: 'translate(-90, 36)'
@@ -290,10 +294,10 @@ function displayTShirts(teamsPositions, containerId, showTShirtNr, callbackPlaye
             .attr({
                 fill: 'white',
                 x: function(d, i, j) {
-                    return (d < 10 ? 30 : 10) + (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2) * 1 / svgHeight * (250));
+                    return (d < 10 ? 31 : 12) + (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2) * 1 / svgHeight * (250));
                 },
                 y: function(d, i, j) {
-                    return 60 + (i * heightSteps2[j]) + heightSteps2[j] / 2;
+                    return 58 + (i * heightSteps2[j]) + heightSteps2[j] / 2;
                 },
                 width: '75px',
                 height: '75px',
