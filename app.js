@@ -12,8 +12,6 @@ var teamsPositions = {
 startFrom: 'left' or 'right'
 */
 
-var aaa = 'gigi';
-
 function displayTShirts(teamsPositions, elementId) {
     var svg = d3.select(elementId).append('svg');
 
@@ -142,7 +140,29 @@ function displayTShirts(teamsPositions, elementId) {
             width: '75px',
             height: '75px',
             transform: 'translate(-130, 35)'
+        })
+        .on('click', function (d, i ,j) {
+            playerClickHandler('away', d, i, j);
         });
+
+        // g2tmp.append('foreignObject')
+        // .attr({
+        //     x: function(d, i, j) {
+        //         return (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2)  * 1/svgHeight * 250);
+        //         // return (svgWidth - j * widthStep2 + widthStep2/4) + ((teamsPositions.t2ShirtNrArr.length - j ) * (0.3) * ((i) / teamsPositions.t2ShirtNrArr[j].length - 0.5) * 250) + (j === 0 ? 120 : 0);
+        //         // return (svgWidth - j * widthStep2 - widthStep2/2);// + (i / teamsPositions.t2ShirtNrArr[j].length ) * 250 - ( (j) / teamsPositions.t2ShirtNrArr.length ) * 150;
+        //     },
+        //     y: function(d, i, j) {
+        //         return (i * heightSteps2[j]) + heightSteps2[j] / 2;
+        //     },
+        //     width: 200,
+        //     height: 200
+        // }).append("xhtml:body")
+        //     .style("font", "14px 'Helvetica Neue'")
+        //         .html("<h1>An HTML Foreign Object in SVG</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+        //
+
+
         g2.selectAll('rect')
             .data(teamsPositions.t2ShirtNrArr)
             .enter()
@@ -192,6 +212,23 @@ function displayTShirts(teamsPositions, elementId) {
                 transform: 'translate(-80, 35)'
             });
 }
+
+function playerClickHandler(team, tShirtNr, x, y) {
+    // React.render(React.createElement(Tooltip, {}), document.body);
+    playerTooltipData.text = team + ' -- ' + tShirtNr;
+
+    Tooltip.forceUpdate();
+
+    console.log(playerTooltipData);
+    $('#player-popup').show();
+    $('#player-popup').css('left', x*50);
+    $('#player-popup').css('top', x*50);
+}
+
+
+var playerTooltipData = {
+    text: 'giig'
+};
 
 function createField(containerID) {
     var svg = d3.select(containerID).append('svg');

@@ -249,3 +249,7 @@ React.renderComponent(
 );
 
 --------
+A common pattern is to create several stateless components that just render data, and have a stateful component above them
+in the hierarchy that passes its state to its children via props.
+
+----------

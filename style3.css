@@ -119,6 +119,14 @@ body {
     overflow: hidden;
 }
 
+#player-popup {
+    display: none;
+    position: absolute;
+    width: 500;
+    height: 500;
+    background-color: red;
+}
+
 
 #svg-field {
     width: 97%;
