@@ -1,14 +1,13 @@
-var testData = {
-    id: 1234,
-    teams: {
-        names: ['Barcelona', 'Real Madrid'],
-        logos: ['fcb.png', 'rm.png']
-    },
-    score: {
-        home: 2,
-        away: 1
-    },
-    time : '88\'',
+var scoreTestData = {
+    home: 2,
+    away: 1
+};
+
+var timeTestData = {
+    time: '88\''
+};
+
+var eventsTestData = {
     events: [{
         type: 0,
         time: '11',
@@ -64,7 +63,14 @@ var testData = {
         time: '87',
         team: 0,
         players: ['R. Carvalho']
-    }],
+    }]
+};
+
+var testData = {
+    teams: {
+        names: ['Barcelona', 'Real Madrid'],
+        logos: ['fcb.png', 'rm.png']
+    },
     field: {
         t1ShirtImg: 'barcelona-tshirt.png',
         t1ShirtNrArr: [
@@ -148,3 +154,73 @@ var testData = {
         }
     ]
 };
+
+var playerBioTestData = {
+    name: 'Lionel Messi',
+    imgUrl: 'messi.jpg',
+    shirtNr: '10',
+    nationalityFlagUrl: '',
+    data: [
+        // {
+        //     key: 'Position',
+        //     value: 'Forward'
+        // },
+        {
+            key: 'Age',
+            value: '28'
+        },
+        {
+            key: 'Height',
+            value: '170 cm'
+        },
+        {
+            key: 'Weight',
+            value: '72 kg'
+        },
+        {
+            key: 'Nationality',
+            value: 'Argentina'
+        },
+    ]
+};
+
+var playerStatsTestData = {
+    data: [
+        {
+            key: 'Total Goals',
+            value: '0'
+        },
+        {
+            key: 'Goal Assists',
+            value: '1'
+        },
+        {
+            key: 'Shots On Target',
+            value: '3'
+        },
+        {
+            key: 'Total Shots',
+            value: '3'
+        },
+        {
+            key: 'Fouls Committed',
+            value: '1'
+        },
+        {
+            key: 'Fouls Suffered',
+            value: '2'
+        },
+        {
+            key: 'Red Cards',
+            value: '0'
+        },
+        {
+            key: 'Yellow Cards',
+            value: '1'
+        },
+    ]
+};
+
+var playerHeatMapTestData = {
+    data: []
+}

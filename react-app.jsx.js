@@ -3,8 +3,10 @@
 var Wrapper = React.createClass({
 
     getInitialState: function () {
-        console.log(testData);
         return {
+            score: scoreTestData,
+            time: timeTestData,
+            events: eventsTestData,
             match: testData
         };
     },
@@ -20,8 +22,8 @@ var Wrapper = React.createClass({
                 <Tooltip />
                 <div className="row">
                     <div className="col-sm-4">
-                        <ScoreBox teams={this.state.match.teams} score={this.state.match.score} time={this.state.match.time} />
-                        <EventsBox events={this.state.match.events} />
+                        <ScoreBox teams={this.state.match.teams} score={this.state.score} time={this.state.time} />
+                        <EventsBox events={this.state.events.events} />
                     </div>
                     <div className="col-sm-7 col-sm-push-1">
                         <div className="row">
@@ -40,7 +42,6 @@ var Wrapper = React.createClass({
                                 <HomePlayers players={this.state.match.players.awayPlayers} playerNrs={this.state.match.players.awayPlayersNr} team="away"/>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -278,18 +279,102 @@ var Stats = React.createClass({
     }
 });
 
-var Tooltip = React.createClass({
+var PlayerBio = React.createClass({
+    render: function () {
+
+        var details = this.props.playerBio.data.map(function (element) {
+            return (
+                <div className="row">
+                    <div className="col-xs-6">
+                        <span>{element.key}</span>
+                    </div>
+                    <div className="col-xs-6">
+                        <span>{element.value}</span>
+                    </div>
+                </div>
+            );
+        });
+
+        return (
+            <div className="col-sm-3">
+                <div className="row">
+                    <div className="col-xs-12 text-center">
+                        <img src={this.props.playerBio.imgUrl} width="50" height="75"></img>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-xs-10">
+                        <h3>{this.props.playerBio.name}</h3>
+                    </div>
+                    <div className="col-xs-2">
+                        <h3>{this.props.playerBio.shirtNr}</h3>
+                    </div>
+                </div>
+                {details}
+            </div>
+        );
+    }
+
+});
+
+var PlayerStats = React.createClass({
+    render: function () {
+
+        var details = this.props.playerStats.data.map(function (element) {
+            return (
+                <div className="row">
+                    <div className="col-xs-10">
+                        <span>{element.key}</span>
+                    </div>
+                    <div className="col-xs-2">
+                        <span>{element.value}</span>
+                    </div>
+                </div>
+            );
+        });
+
+        return (
+            <div className="col-sm-3">
+                {details}
+            </div>
+        );
+    }
+
+});
+
+var PlayerHeatmap = React.createClass({
+    componentDidMount: function () {
+        createHeatMap('#heatMapSvgContainer', this.props.playerHeatmap);
+    },
     render: function () {
         return (
+            <div id="heatMapSvgContainer" className="col-sm-6">
+            </div>
+        );
+    }
+
+});
+
+var Tooltip = React.createClass({
+        render: function () {
+            if (this.props.playerBio === '' && this.props.playerStats === '' && this.props.playerHeatmap === '') {
+                return false;
+            }
+            if (this.props.playerBio === undefined && this.props.playerStats === undefined && this.props.playerHeatmap === undefined) {
+                return false;
+            }
+        return (
             <div className="modal fade" id="myModal" role="dialog">
-                <div className="modal-dialog modal-sm">
+                <div className="modal-dialog modal-lg">
                   <div className="modal-content">
                     <div className="modal-header">
-                      <button type="button" className="close" data-dismiss="modal">&times;</button>
-                      <h4 className="modal-title">Modal Header</h4>
+                        <button type="button" className="close" data-dismiss="modal">&times;</button>
+                        <h4 className="modal-title">{this.props.playerBio.name}</h4>
                     </div>
                     <div className="modal-body">
-                      <p>This is a small modal.</p>
+                        <PlayerBio playerBio={this.props.playerBio} />
+                        <PlayerStats playerStats={this.props.playerStats} />
+                        <PlayerHeatmap playerHeatmap={this.props.playerHeatmap} />
                     </div>
                     <div className="modal-footer">
                       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
@@ -304,16 +389,24 @@ var Tooltip = React.createClass({
 var SvgContainer = React.createClass({
     getInitialState: function () {
         return {
-            playerClicked: '',
+            playerBio: '',
+            playerStats: '',
+            playerHeatmap: '',
             showTShirtNr: true
         };
     },
-    handlePlayerClick: function (data) {
+    handlePlayerClick: function (team, tShirtNr) {
+        var pb = playerBioTestData;
+        var ps = playerStatsTestData;
+        var ph = playerHeatMapTestData;
+
         this.setState({
-            playerClicked: data
+            playerBio: pb,
+            playerStats: ps,
+            playerHeatmap: ph
         });
-        $('#myModal').modal('show');
-        console.log(data, this.state);
+
+        $(this.refs.playerDetailsModal.getDOMNode()).modal();
     },
     componentDidMount: function () {
         var containerId = '#' + this.props.containerId;
@@ -323,7 +416,7 @@ var SvgContainer = React.createClass({
     render: function () {
         return(
             <div id={this.props.containerId}>
-                <Tooltip playerData={this.state.playerClicked} />
+                <Tooltip ref="playerDetailsModal" playerBio={this.state.playerBio} playerStats={this.state.playerStats} playerHeatmap={this.state.playerHeatmap} />
             </div>);
     }
 });
