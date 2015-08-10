@@ -12,8 +12,12 @@ var Wrapper = React.createClass({
     },
 
     componentDidMount: function () {
-        // createField('#svg-holder');
-        // displayTShirts(match.field, '#svg-holder');
+        var that = this;
+
+        var socket = io('http://localhost:3000');
+        socket.on('score-event', function(data){
+            that.setState({score: data});
+        });
     },
 
     render: function () {
@@ -302,15 +306,17 @@ var PlayerBio = React.createClass({
                         <img src={this.props.playerBio.imgUrl} width="50" height="75"></img>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-xs-10">
+                <div className="row playerId">
+                    <div className="col-xs-9">
                         <h3>{this.props.playerBio.name}</h3>
                     </div>
-                    <div className="col-xs-2">
+                    <div className="col-xs-3">
                         <h3>{this.props.playerBio.shirtNr}</h3>
                     </div>
                 </div>
-                {details}
+                <div className="player-bio-table2">
+                    {details}
+                </div>
             </div>
         );
     }
@@ -326,7 +332,7 @@ var PlayerStats = React.createClass({
                     <div className="col-xs-10">
                         <span>{element.key}</span>
                     </div>
-                    <div className="col-xs-2">
+                    <div className="col-xs-2 player-stats-nr">
                         <span>{element.value}</span>
                     </div>
                 </div>
@@ -334,7 +340,7 @@ var PlayerStats = React.createClass({
         });
 
         return (
-            <div className="col-sm-3">
+            <div className="col-sm-3 player-stats-table">
                 {details}
             </div>
         );
@@ -355,6 +361,32 @@ var PlayerHeatmap = React.createClass({
 
 });
 
+var PlayerGoalmap = React.createClass({
+    componentDidMount: function () {
+        createGoalMap('#goalMapSvgContainer', this.props.playerHeatmap);
+    },
+    render: function () {
+        return (
+            <div id="goalMapSvgContainer" className="col-sm-6">
+            </div>
+        );
+    }
+
+});
+
+var PlayerPossesionGraph = React.createClass({
+    componentDidMount: function () {
+        createPossesionGraph('#possesionSvgContainer', possessionTestData.data);
+    },
+    render: function () {
+        return (
+            <div id="possesionSvgContainer" className="col-sm-12">
+            </div>
+        );
+    }
+
+});
+
 var Tooltip = React.createClass({
         render: function () {
             if (this.props.playerBio === '' && this.props.playerStats === '' && this.props.playerHeatmap === '') {
@@ -369,12 +401,16 @@ var Tooltip = React.createClass({
                   <div className="modal-content">
                     <div className="modal-header">
                         <button type="button" className="close" data-dismiss="modal">&times;</button>
-                        <h4 className="modal-title">{this.props.playerBio.name}</h4>
                     </div>
                     <div className="modal-body">
+                        <div className="row">
                         <PlayerBio playerBio={this.props.playerBio} />
                         <PlayerStats playerStats={this.props.playerStats} />
                         <PlayerHeatmap playerHeatmap={this.props.playerHeatmap} />
+                        </div>
+                        <div className="row">
+                            <PlayerPossesionGraph />
+                        </div>
                     </div>
                     <div className="modal-footer">
                       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>

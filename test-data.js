@@ -188,7 +188,7 @@ var playerStatsTestData = {
     data: [
         {
             key: 'Total Goals',
-            value: '0'
+            value: '1'
         },
         {
             key: 'Goal Assists',
@@ -223,4 +223,388 @@ var playerStatsTestData = {
 
 var playerHeatMapTestData = {
     data: []
+}
+
+var possessionTestData = {
+    playerId: 1234,
+    data : [{
+    	min: 1,
+    	poss: 0
+    },
+    {
+    	min: 2,
+    	poss: 0.99
+    },
+    {
+    	min: 3,
+    	poss: 0.96
+    },
+    {
+    	min: 4,
+    	poss: 0.96
+    },
+    {
+    	min: 5,
+    	poss: 0
+    },
+    {
+    	min: 6,
+    	poss: 0
+    },
+    {
+    	min: 7,
+    	poss: 0
+    },
+    {
+    	min: 8,
+    	poss: 0
+    },
+    {
+    	min: 9,
+    	poss: 0.85
+    },
+    {
+    	min: 10,
+    	poss: 0.73
+    },
+    {
+    	min: 11,
+    	poss: 0
+    },
+    {
+    	min: 12,
+    	poss: 0
+    },
+    {
+    	min: 13,
+    	poss: 0
+    },
+    {
+    	min: 14,
+    	poss: 0
+    },
+    {
+    	min: 15,
+    	poss: 0
+    },
+    {
+    	min: 16,
+    	poss: 0
+    },
+    {
+    	min: 17,
+    	poss: 0
+    },
+    {
+    	min: 18,
+    	poss: 0
+    },
+    {
+    	min: 19,
+    	poss: 0.92
+    },
+    {
+    	min: 20,
+    	poss: 0
+    },
+    {
+    	min: 21,
+    	poss: 0
+    },
+    {
+    	min: 22,
+    	poss: 0
+    },
+    {
+    	min: 23,
+    	poss: 0
+    },
+    {
+    	min: 24,
+    	poss: 0
+    },
+    {
+    	min: 25,
+    	poss: 0
+    },
+    {
+    	min: 26,
+    	poss: 0
+    },
+    {
+    	min: 27,
+    	poss: 0
+    },
+    {
+    	min: 28,
+    	poss: 0
+    },
+    {
+    	min: 29,
+    	poss: 0.96
+    },
+    {
+    	min: 30,
+    	poss: 0
+    },
+    {
+    	min: 31,
+    	poss: 0.76
+    },
+    {
+    	min: 32,
+    	poss: 0
+    },
+    {
+    	min: 33,
+    	poss: 0.77
+    },
+    {
+    	min: 34,
+    	poss: 0
+    },
+    {
+    	min: 35,
+    	poss: 0
+    },
+    {
+    	min: 36,
+    	poss: 0
+    },
+    {
+    	min: 37,
+    	poss: 0.85
+    },
+    {
+    	min: 38,
+    	poss: 0.99
+    },
+    {
+    	min: 39,
+    	poss: 0.75
+    },
+    {
+    	min: 40,
+    	poss: 0.72
+    },
+    {
+    	min: 41,
+    	poss: 0
+    },
+    {
+    	min: 42,
+    	poss: 0
+    },
+    {
+    	min: 43,
+    	poss: 0
+    },
+    {
+    	min: 44,
+    	poss: 0
+    },
+    {
+    	min: 45,
+    	poss: 0
+    },
+    {
+    	min: 46,
+    	poss: 0
+    },
+    {
+    	min: 47,
+    	poss: 0.70
+    },
+    {
+    	min: 48,
+    	poss: 0.97
+    },
+    {
+    	min: 49,
+    	poss: 0
+    },
+    {
+    	min: 50,
+    	poss: 0.64
+    },
+    {
+    	min: 51,
+    	poss: 0.97
+    },
+    {
+    	min: 52,
+    	poss: 0
+    },
+    {
+    	min: 53,
+    	poss: 0
+    },
+    {
+    	min: 54,
+    	poss: 0.89
+    },
+    {
+    	min: 55,
+    	poss: 1.00
+    },
+    {
+    	min: 56,
+    	poss: 0.68
+    },
+    {
+    	min: 57,
+    	poss: 0.87
+    },
+    {
+    	min: 58,
+    	poss: 0.86
+    },
+    {
+    	min: 59,
+    	poss: 0
+    },
+    {
+    	min: 60,
+    	poss: 0.93
+    },
+    {
+    	min: 61,
+    	poss: 0
+    },
+    {
+    	min: 62,
+    	poss: 0.70
+    },
+    {
+    	min: 63,
+    	poss: 0.88
+    },
+    {
+    	min: 64,
+    	poss: 0
+    },
+    {
+    	min: 65,
+    	poss: 0
+    },
+    {
+    	min: 66,
+    	poss: 0
+    },
+    {
+    	min: 67,
+    	poss: 0
+    },
+    {
+    	min: 68,
+    	poss: 0.64
+    },
+    {
+    	min: 69,
+    	poss: 0.66
+    },
+    {
+    	min: 70,
+    	poss: 0
+    },
+    {
+    	min: 71,
+    	poss: 0.97
+    },
+    {
+    	min: 72,
+    	poss: 0
+    },
+    {
+    	min: 73,
+    	poss: 0
+    },
+    {
+    	min: 74,
+    	poss: 0
+    },
+    {
+    	min: 75,
+    	poss: 0
+    },
+    {
+    	min: 76,
+    	poss: 0
+    },
+    {
+    	min: 77,
+    	poss: 0.88
+    },
+    {
+    	min: 78,
+    	poss: 0
+    },
+    {
+    	min: 79,
+    	poss: 0
+    },
+    {
+    	min: 80,
+    	poss: 0.82
+    },
+    {
+    	min: 81,
+    	poss: 0
+    },
+    {
+    	min: 82,
+    	poss: 0
+    },
+    {
+    	min: 83,
+    	poss: 0
+    },
+    {
+    	min: 84,
+    	poss: 0
+    },
+    {
+    	min: 85,
+    	poss: 0
+    },
+    {
+    	min: 86,
+    	poss: 0
+    },
+    {
+    	min: 87,
+    	poss: 0
+    },
+    {
+    	min: 88,
+    	poss: 0
+    },
+    {
+    	min: 89,
+    	poss: 0
+    },
+    {
+    	min: 90,
+    	poss: 0
+    }
+    ]
+}
+
+var playerMatchEventsTestData = {
+    playerId : 1234,
+    data : [
+        {
+            min: 10,
+            event: 'yellow-card'
+        },
+        {
+            min: 58,
+            event: 'goal'
+        },
+        {
+            min: 80,
+            event: 'change',
+            by: 'Xavi'
+        }
+    ]
 }
