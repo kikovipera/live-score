@@ -23,7 +23,6 @@ var Wrapper = React.createClass({
     render: function () {
         return (
             <div className="container">
-                <Tooltip />
                 <div className="row">
                     <div className="col-sm-4">
                         <ScoreBox teams={this.state.match.teams} score={this.state.score} time={this.state.time} />
@@ -303,7 +302,7 @@ var PlayerBio = React.createClass({
             <div className="col-sm-3">
                 <div className="row">
                     <div className="col-xs-12 text-center">
-                        <img src={this.props.playerBio.imgUrl} width="50" height="75"></img>
+                        <img src={this.props.playerBio.imgUrl} width="100" height="130"></img>
                     </div>
                 </div>
                 <div className="row playerId">
@@ -361,22 +360,9 @@ var PlayerHeatmap = React.createClass({
 
 });
 
-var PlayerGoalmap = React.createClass({
-    componentDidMount: function () {
-        createGoalMap('#goalMapSvgContainer', this.props.playerHeatmap);
-    },
-    render: function () {
-        return (
-            <div id="goalMapSvgContainer" className="col-sm-6">
-            </div>
-        );
-    }
-
-});
-
 var PlayerPossesionGraph = React.createClass({
     componentDidMount: function () {
-        createPossesionGraph('#possesionSvgContainer', possessionTestData.data);
+        createPossesionGraph('#possesionSvgContainer', this.props.playerPossesion.data, this.props.playerEvents.data);
     },
     render: function () {
         return (
@@ -387,7 +373,7 @@ var PlayerPossesionGraph = React.createClass({
 
 });
 
-var Tooltip = React.createClass({
+var PlayerStatDialog = React.createClass({
         render: function () {
             if (this.props.playerBio === '' && this.props.playerStats === '' && this.props.playerHeatmap === '') {
                 return false;
@@ -400,7 +386,11 @@ var Tooltip = React.createClass({
                 <div className="modal-dialog modal-lg">
                   <div className="modal-content">
                     <div className="modal-header">
-                        <button type="button" className="close" data-dismiss="modal">&times;</button>
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                            </div>
+                        </div>
                     </div>
                     <div className="modal-body">
                         <div className="row">
@@ -409,7 +399,7 @@ var Tooltip = React.createClass({
                         <PlayerHeatmap playerHeatmap={this.props.playerHeatmap} />
                         </div>
                         <div className="row">
-                            <PlayerPossesionGraph />
+                            <PlayerPossesionGraph playerPossesion={this.props.playerPossesion} playerEvents={this.props.playerEvents} />
                         </div>
                     </div>
                     <div className="modal-footer">
@@ -435,11 +425,15 @@ var SvgContainer = React.createClass({
         var pb = playerBioTestData;
         var ps = playerStatsTestData;
         var ph = playerHeatMapTestData;
+        var pp = possessionTestData;
+        var pe = playerMatchEventsTestData;
 
         this.setState({
             playerBio: pb,
             playerStats: ps,
-            playerHeatmap: ph
+            playerHeatmap: ph,
+            playerPossesion: pp,
+            playerEvents: pe
         });
 
         $(this.refs.playerDetailsModal.getDOMNode()).modal();
@@ -452,7 +446,13 @@ var SvgContainer = React.createClass({
     render: function () {
         return(
             <div id={this.props.containerId}>
-                <Tooltip ref="playerDetailsModal" playerBio={this.state.playerBio} playerStats={this.state.playerStats} playerHeatmap={this.state.playerHeatmap} />
+                <PlayerStatDialog ref="playerDetailsModal"
+                        playerBio={this.state.playerBio}
+                        playerStats={this.state.playerStats}
+                        playerHeatmap={this.state.playerHeatmap}
+                        playerPossesion={this.state.playerPossesion}
+                        playerEvents={this.state.playerEvents}
+                />
             </div>);
     }
 });

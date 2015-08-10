@@ -189,8 +189,14 @@ image {
     font-weight: bold;
 }
 
-.area {
-    background-color: lime;
+.close {
+    /*background-color: white;*/
+    color: white;
+    text-shadow: none;
+}
+
+.modal-body, .modal-content, .modal-header, .modal-footer {
+    border: 0;
 }
 
 

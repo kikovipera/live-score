@@ -118,3 +118,53 @@ it will be ignored afterwards. Don’t be afraid to use this construct for all t
 so you won’t have to worry about creating them multiple times.
 
 -----
+
+d3.select('ANY CSS SELECTOR').append('span').html('<strong>message</strong>')
+d3.select('ANY CSS SELECTOR').insert('span', ':nth-child(3)').html('<strong>message</strong>') //insert at specific position
+.remove()
+
+.attr('class', 'css-class-name')
+.classed('css-class-name', true) //toggle className
+.classed({'css-class-name': true, 'css-class-name 2': false}) //toggle className
+.style({prop1: val1})
+
+------
+
+d3.selectAll('.item').data([true, true, false]).style('background', 'red') //apply only to first and second '.item'
+    (the third item in the array is false)
+------
+
+yScale = d3.scale.linear().domain([0, 500]).range([3,7]) // <- this is a function (ex: yScale(value))
+
+scale ordinal rangeBands() & rangeBand()
+------
+
+range(['#2345ae', '#1123aa']) <-- range between colors
+
+----
+
+d3.select(this) <- select current element
+
+-----
+
+elemet.tansition().attr({}) <- all attrs after transition will be animated
+
+-----
+
+translate(arc.centroid(d))
+
+-----
+
+force layout, gravity...
+tree layout
+d3.svg.diagonal
+----
+
+d3.min(object, function (d){return object.field})
+
+d3.extent <- returns [min, max] values
+-----
+
+bisect array
+
+-----

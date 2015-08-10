@@ -542,12 +542,6 @@ function createGoalMap(containerId, data) {
     createHeatMapField(containerId, svg);
 }
 
-
-var data1 = [{
-    "min": "11",
-    "evtype": ""
-}];
-
 var lineGen = d3.svg.line()
     .x(function(d) {
         return d.min * 1150/90;
@@ -563,7 +557,7 @@ var area = d3.svg.area()
     .y1(function(d) { return -d.poss * 150; })
     .interpolate("basis");
 
-function createPossesionGraph(containerId, data) {
+function createPossesionGraph(containerId, data, events) {
     var svg = d3.select(containerId).append('svg');
 
     svg.attr({
@@ -606,24 +600,8 @@ function createPossesionGraph(containerId, data) {
         .attr("stroke", "white")
         .call(xAxis);
 
-    var ddata = [
-        {
-            min: 10,
-            event: 'yellow-card'
-        },
-        {
-            min: 51,
-            event: 'goal'
-        },
-        {
-            min: 80,
-            event: 'change',
-            by: 'Xavi'
-        }
-    ];
-
     svg.selectAll('image')
-        .data(ddata)
+        .data(events)
         .enter()
         .append('image')
         .attr('xlink:href', function (d) {
@@ -651,7 +629,7 @@ function createPossesionGraph(containerId, data) {
         });
 
         svg.selectAll('rect')
-            .data(ddata)
+            .data(events)
             .enter()
             .append('line')
             .attr({
