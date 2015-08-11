@@ -550,13 +550,13 @@ function createPossesionGraph(containerId, data, events) {
         .append('image')
         .attr('xlink:href', function (d) {
             if (d.event === 'yellow-card') {
-                return 'yellow-card.png';
+                return 'assets/yellow-card.png';
             } else if (d.event === 'red-card') {
-                return 'red-card.png';
+                return 'assets/red-card.png';
             } else if (d.event === 'goal') {
-                return 'goal2.png';
+                return 'assets/goal2.png';
             } else if (d.event === 'change') {
-                return 'leave.png';
+                return 'assets/leave.png';
             }
         })
         .attr({
