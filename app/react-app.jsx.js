@@ -145,24 +145,24 @@ var EventImg = React.createClass({
 
         if (this.props.event.type === 0) {
             return (
-                <img src="goal2.png" alt="" width="15" height="15" />
+                <img src="assets/goal2.png" alt="" width="15" height="15" />
             );
         } else if (this.props.event.type === 1) {
             return (
-                <img src="yellow-card.png" alt="yellow card" />
+                <img src="assets/yellow-card.png" alt="yellow card" />
             );
         } else if (this.props.event.type === 2) {
             return (
-                <img src="red-card.png" alt="red card" />
+                <img src="assets/red-card.png" alt="red card" />
             );
         } else if (this.props.event.type === 3) {
             return (
                 <div>
                     <div className="row">
-                        <img className="small-img" src="leave.png" alt="leave" />
+                        <img className="small-img" src="assets/leave.png" alt="leave" />
                     </div>
                     <div className="row">
-                        <img className="small-img" src="enter.png" alt="enter" />
+                        <img className="small-img" src="assets/enter.png" alt="enter" />
                     </div>
                 </div>
             );
@@ -394,9 +394,9 @@ var PlayerStatDialog = React.createClass({
                     </div>
                     <div className="modal-body">
                         <div className="row">
-                        <PlayerBio playerBio={this.props.playerBio} />
-                        <PlayerStats playerStats={this.props.playerStats} />
-                        <PlayerHeatmap playerHeatmap={this.props.playerHeatmap} />
+                            <PlayerBio playerBio={this.props.playerBio} />
+                            <PlayerStats playerStats={this.props.playerStats} />
+                            <PlayerHeatmap playerHeatmap={this.props.playerHeatmap} />
                         </div>
                         <div className="row">
                             <PlayerPossesionGraph playerPossesion={this.props.playerPossesion} playerEvents={this.props.playerEvents} />

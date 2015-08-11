@@ -69,17 +69,17 @@ var eventsTestData = {
 var testData = {
     teams: {
         names: ['Barcelona', 'Real Madrid'],
-        logos: ['fcb.png', 'rm.png']
+        logos: ['assets/fcb.png', 'assets/rm.png']
     },
     field: {
-        t1ShirtImg: 'barcelona-tshirt.png',
+        t1ShirtImg: 'assets/barcelona-tshirt.png',
         t1ShirtNrArr: [
             ['1'],
             ['2', '5', '3', '22'],
             ['6', '16', '8', '9', '10'],
             ['4']
         ],
-        t2ShirtImg: 'real-tshirt.png',
+        t2ShirtImg: 'assets/real-tshirt.png',
         t2ShirtNrArr: [
             ['1'],
             ['15', '3', '4', '12'],
@@ -157,7 +157,7 @@ var testData = {
 
 var playerBioTestData = {
     name: 'Lionel Messi',
-    imgUrl: 'messi.jpg',
+    imgUrl: 'assets/messi.jpg',
     shirtNr: '10',
     nationalityFlagUrl: '',
     data: [

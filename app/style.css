@@ -148,6 +148,10 @@ image {
     color: white;
 }
 
+.player-bio-table2  {
+    overflow: hidden;
+}
+
 .player-bio-table2 .row {
     padding: 2px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
@@ -198,6 +202,11 @@ image {
 .modal-body, .modal-content, .modal-header, .modal-footer {
     border: 0;
 }
+
+.svgMaps svg {
+    min-height: 250px;
+}
+
 
 
 @media (max-width: 640px) {

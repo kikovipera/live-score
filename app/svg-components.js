@@ -479,89 +479,33 @@ function createHeatMap(containerId, data) {
     createHeatMapField(containerId, svg);
 }
 
-function createGoalMap(containerId, data) {
-    var svg = d3.select(containerId).append('svg');
-
-    svg.attr({
-        viewBox: '0 0 1150 720',
-        id: 'svg-goalmap-field',
-        stroke: 'black'
-    });
-
-    var widthSqNr = 40;
-    var heightSqNr = 20;
-
-    var widthConst = 1100 / widthSqNr;
-    var heightConst = 700 / heightSqNr - 2;
-
-    var colors = ['#A67D9F', '#92799C', '#7D7295', '#696891', '#55618C'];
-    // var colors = ['#C0D860', '#789048', '#607848'];
-
-    var op = 1;
-
-    // for (var i = 0; i < 150; i++) {
-    //     svg.append('circle').attr({
-    //         cx: function() {
-    //             return 400 - 300 *Math.random();
-    //         },
-    //         cy: function() {
-    //             return 500 * Math.random() + 100;
-    //         },
-    //         r: function () {
-    //             return Math.random() * 40;
-    //         },
-    //         width: widthConst,
-    //         height: heightConst,
-    //         stroke: 'green',
-    //         'stroke-opacity': op,
-    //         fill: colors[Math.floor(Math.random()* 2)],
-    //         'fill-opacity': op
-    //     });
-    // }
-
-    for (var i = 0; i < widthSqNr - 1; i++) {
-        for (var j = 0; j < heightSqNr; j++) {
-
-            svg.append('rect').attr({
-                x: function() {
-                    return i * widthConst + 50;
-                },
-                y: function() {
-                    return j * heightConst + 20;
-                },
-                width: widthConst,
-                height: heightConst,
-                stroke: 'green',
-                'stroke-opacity': 0.1,
-                fill: colors[Math.floor(Math.random()* colors.length)],
-                'fill-opacity': op
-            });
-        }
-    }
-
-    createHeatMapField(containerId, svg);
-}
-
 var lineGen = d3.svg.line()
     .x(function(d) {
         return d.min * 1150/90;
     })
     .y(function(d) {
-        return -d.poss * 150;
+        return -d.poss * 75;
     })
     .interpolate("basis");
 
 var area = d3.svg.area()
     .x(function(d) { return d.min * 1150/90; })
     .y0(0)
-    .y1(function(d) { return -d.poss * 150; })
+    .y1(function(d) { return -d.poss * 75; })
     .interpolate("basis");
 
 function createPossesionGraph(containerId, data, events) {
     var svg = d3.select(containerId).append('svg');
 
+    var width = 1150;
+    var height = 200;
+    var translateSize = height - 100;
+    var translateSize2 = height - 50;
+    var widthP = width / 90;
+    var heightP = height / 90;
+
     svg.attr({
-        viewBox: '0 0 1150 250',
+        viewBox: '0 0 ' + width + ' ' + height,
         id: 'svg-possesion-graph'
     });
 
@@ -581,22 +525,22 @@ function createPossesionGraph(containerId, data, events) {
         .datum(data)
         .attr("d", area)
         .attr('fill', 'url(#diagonalHatch)')
-        .attr("transform", "translate(0," + (150) + ")")
+        .attr("transform", "translate(0," + (translateSize) + ")")
         .attr('fill-opacity', 1);
 
     svg.append('path')
       .attr('d', lineGen(data))
       .attr('stroke', '#55618C')
       .attr('stroke-width', 3)
-      .attr("transform", "translate(0," + (150) + ")")
+      .attr("transform", "translate(0," + (translateSize) + ")")
       .attr('fill', 'none');
 
       //axis
-    var xScale = d3.scale.linear().range([0, 1150]).domain([0, 90]);
+    var xScale = d3.scale.linear().range([0, width]).domain([0, 90]);
     var xAxis = d3.svg.axis().scale(xScale).ticks(18);
 
     svg.append("g")
-        .attr("transform", "translate(0," + (150) + ")")
+        .attr("transform", "translate(0," + (translateSize) + ")")
         .attr("stroke", "white")
         .call(xAxis);
 
@@ -617,15 +561,14 @@ function createPossesionGraph(containerId, data, events) {
         })
         .attr({
             x: function(d) {
-                var a = d.min * 1150/90;
-                return d.min * 1150/90;
+                return d.min * widthP;
             },
             y: function() {
                 return 0;
             },
             width: '20px',
             height: '30px',
-            transform: 'translate(0, 200)'
+            transform: 'translate(0, ' + translateSize2 + ')'
         });
 
         svg.selectAll('rect')
@@ -634,21 +577,21 @@ function createPossesionGraph(containerId, data, events) {
             .append('line')
             .attr({
                 x1: function(d) {
-                    return d.min * 1150/90 - 5;
+                    return d.min * widthP - 5;
                 },
                 y1: function() {
                     return 0;
                 },
                 x2: function(d) {
-                    return d.min * 1150/90 - 5;
+                    return d.min * widthP - 5;
                 },
                 y2: function() {
-                    return 100;
+                    return 75;
                 },
                 stroke: 'white',
                 'stroke-width': 3,
                 'stroke-opacity': 0.35,
-                transform: 'translate(0, 150)'
+                transform: 'translate(0, ' + translateSize + ')'
             });
 
 }
