@@ -1,0 +1,196 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);@import url(https://fonts.googleapis.com/css?family=Play);* {
+  margin: 0;
+  padding: 0;
+  font-family: "Play", sans-serif; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box; }
+
+body {
+  background-color: #364049;
+  background-color: #364049;
+  font-size: 14px; }
+
+.main-page-message {
+  text-align: center;
+  font-size: 3em;
+  padding: 50px;
+  color: white; }
+
+.main-upload-zone {
+  text-align: center; }
+
+.main-upload-button {
+  padding: 10px;
+  font-size: 1.5em;
+  background-color: #364049;
+  color: white;
+  outline: none;
+  border: solid 2px white; }
+
+.main-upload-button:hover {
+  cursor: pointer;
+  color: black;
+  background-color: white; }
+
+#controls3d {
+  width: 21em;
+  position: fixed;
+  top: 60px;
+  left: 10px;
+  color: black;
+  z-index: 1;
+  font-size: 1em; }
+  #controls3d .panel {
+    padding: 1px 5px;
+    padding-left: 10px;
+    width: 100%;
+    background-color: #F4F4F4;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px; }
+  #controls3d label {
+    font-size: 1em;
+    min-width: 3.5em;
+    display: inline-block;
+    margin-right: 10px; }
+  #controls3d label.title {
+    font-size: 1em;
+    font-weight: bold; }
+  #controls3d label.units {
+    margin-left: 5px;
+    margin-right: 0;
+    min-width: 0; }
+  #controls3d input[type="number"].units {
+    width: 7em;
+    font-size: 1em;
+    padding: 3px;
+    outline-color: #364049; }
+  #controls3d input[type="number"].relative {
+    width: 4em;
+    font-size: 1em;
+    padding: 3px;
+    outline-color: #364049; }
+  #controls3d .file-class {
+    background-color: #F15C24;
+    background-color: #FDD460;
+    color: white;
+    color: black; }
+    #controls3d .file-class .control-button {
+      background-color: #F15C24;
+      background-color: #FDD460;
+      color: white;
+      color: black;
+      border: solid 1px black; }
+    #controls3d .file-class .control-button-selected {
+      background-color: #364049;
+      color: white; }
+  #controls3d .units-class {
+    background-color: #E3D9CD;
+    background-color: #6EB8D3;
+    background-color: #E5D4CD;
+    background-color: #D1CFA6;
+    background-color: #C2B664;
+    background-color: #DADCD9; }
+  #controls3d .options-3d-class {
+    background-color: #D1CFA6; }
+    #controls3d .options-3d-class .control-button {
+      background-color: #D1CFA6;
+      color: white;
+      color: black;
+      border: solid 1px black; }
+    #controls3d .options-3d-class .control-button-selected {
+      background-color: #364049;
+      color: white; }
+
+.control-button {
+  background-color: white;
+  color: black;
+  border: solid 1px #364049;
+  display: inline-block;
+  margin-right: 5px;
+  min-width: 30px;
+  min-height: 30px;
+  cursor: pointer;
+  padding: 0 5px;
+  outline: none; }
+
+.control-button:hover {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); }
+
+.control-button-selected {
+  background-color: #364049;
+  color: white; }
+
+.file-uploader {
+  display: inline-block; }
+
+.file-uploader-file {
+  margin-top: 10px;
+  margin-left: calc(3.5em + 10px); }
+
+.controls-row {
+  width: 100%;
+  padding: 4px 0; }
+
+.times {
+  padding: 0 5px; }
+
+#viewer3d {
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  position: fixed;
+  z-index: 0; }
+
+#close3DPreviewModalButton {
+  z-index: 5;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1em;
+  padding: 10px; }
+
+@media screen and (max-width: 500px) {
+  #controls3d {
+    position: fixed;
+    top: 0;
+    left: 0px;
+    z-index: 1;
+    font-size: 1em;
+    width: 100%;
+    height: 100%;
+    background-color: #364049; }
+    #controls3d .panel {
+      padding: 1px 5px;
+      padding-left: 10px;
+      width: 100%;
+      background-color: #F4F4F4;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 5px; }
+    #controls3d .file-class {
+      background-color: #FDD460;
+      color: black; }
+      #controls3d .file-class .control-button {
+        background-color: #FDD460;
+        color: black; }
+      #controls3d .file-class .control-button-selected {
+        background-color: #364049;
+        color: white; }
+    #controls3d .units-class {
+      background-color: #DADCD9; }
+    #controls3d .options-3d-class {
+      background-color: #D1CFA6; }
+      #controls3d .options-3d-class .control-button {
+        background-color: #D1CFA6;
+        color: black; }
+      #controls3d .options-3d-class .control-button-selected {
+        background-color: #364049;
+        color: white; } }
+
+@media screen and (max-width: 1500px) {
+  body {
+    font-size: 12px; } }

@@ -1,0 +1,18 @@
+
+#svg-field {
+    width: 97%;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+    // transform: perspective( 1200px ) rotateX(45deg);
+}
+
+#svg-names {
+    position: absolute;
+    left: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+image {
+    position: absolute;
+    display: block;
+}
