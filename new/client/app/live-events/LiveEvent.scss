@@ -1,0 +1,54 @@
+
+.SSUI-LiveEvent {
+    width: 100%;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+    border-bottom: solid 1px #fff;
+}
+
+.SSUI-LiveEvent-Home {
+    width: 35%;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+}
+
+.SSUI-LiveEvent-Logo {
+    width: 10%;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+}
+
+.SSUI-LiveEvent-Time {
+    width: 10%;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    font-size: calc(1vw + 10px);
+}
+
+.SSUI-LiveEvent-Away {
+    width: 35%;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+}
+
+.SSUI-LiveEvent-Text {
+    width: 100%;
+    display: block;
+    margin: 0;
+    text-align: center;
+    font-size: calc(1.5vw + 10px);
+}
+
+.SSUI-LiveEvent-Text-Button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    border-bottom: solid 1px white;
+    font-size: calc(1vw + 10px);
+    vertical-align: middle;
+}

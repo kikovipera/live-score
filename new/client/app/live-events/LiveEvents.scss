@@ -1,0 +1,61 @@
+
+
+.SSUI-LiveEvents {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.SSUI-LiveEvents-Header {
+    width: 100%;
+    display: block;
+}
+
+.SSUI-LiveEvents-Header-Row {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.SSUI-LiveEvents-Header-Home {
+    width: 40%;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.SSUI-LiveEvents-Header-Data {
+    width: 20%;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.SSUI-LiveEvents-Header-Data-Score {
+    font-size: calc(2vw + 14px);
+}
+
+.SSUI-LiveEvents-Header-Data-Time {
+    font-size: calc(1.5vw + 10px);
+}
+
+.SSUI-LiveEvents-Header-Away {
+    width: 40%;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.SSUI-LiveEvents-Header-Logo {
+    width: 20%;
+    height: auto;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.SSUI-LiveEvents-Header-Text {
+    margin: 0;
+    display: inline-block;
+    font-size: calc(1.5vw + 10px);
+}
