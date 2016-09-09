@@ -5,8 +5,7 @@ import Field2D from './2d/field2d';
 require('./AppStyle.scss');
 
 import LiveEvents from './live-events/LiveEvents';
-import HomeEvent from './live-events/HomeEvent';
-import AwayEvent from './live-events/AwayEvent';
+import LiveEvent from './live-events/LiveEvent';
 
 // <STLModel/>
 // <Field2D/>
@@ -57,14 +56,14 @@ const playerClick = (player) => {
 }
 
 const events = [
-    <HomeEvent {...eventData} key='1'  onPlayerClick={playerClick}/>,
-    <HomeEvent {...eventData} key='2'  onPlayerClick={playerClick}/>,
-    <AwayEvent {...eventData} key='3'  onPlayerClick={playerClick}/>,
-    <HomeEvent {...eventData2} key='4' onPlayerClick={playerClick}/>
+    <LiveEvent type="home" {...eventData} key='1'  onPlayerClick={playerClick}/>,
+    <LiveEvent type="home" {...eventData} key='2'  onPlayerClick={playerClick}/>,
+    <LiveEvent type="away" {...eventData} key='3'  onPlayerClick={playerClick}/>,
+    <LiveEvent type="home" {...eventData2} key='4' onPlayerClick={playerClick}/>
 ];
 
 ReactDOM.render((
-    <div id="fieldContainer2" style={{width:'1150px',height:'720px'}}>
+    <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
         <LiveEvents homeTeam={homeTeam} awayTeam={awayTeam} matchData={matchData}>
             {events}
         </LiveEvents>
