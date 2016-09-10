@@ -1,4 +1,6 @@
 
+$textColor: rgba(255,255,255,1);
+
 .SSUI-LiveEvent {
     width: 100%;
     min-height: 50px;
@@ -6,7 +8,7 @@
     display: flex;
     flex-flow: row;
     box-sizing: border-box;
-    border-bottom: solid 1px rgba(255, 255, 255, 0.4);
+    border-bottom: solid 1px rgba(255, 255, 255, 0.2);
     padding: 5px;
 }
 
@@ -76,13 +78,14 @@
     background-color: rgba(0, 0, 0, 0);
     border: none;
     outline: none;
-    font-size: 1em;
+    font-size: 1.25em;
     cursor: pointer;
     padding: 0;
-    color: white;
+    color: $textColor;
 }
 
 .SSUI-LiveEvent-Text-Button:hover {
     // border-bottom: solid 1px #ccc;
     background-color: rgba(255, 255, 255, 0.4);
+    padding: 0px 5px;
 }

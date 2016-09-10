@@ -1,8 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 @import url(https://fonts.googleapis.com/css?family=Play);
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Abel);
+@import url(https://fonts.googleapis.com/css?family=Quicksand);
+@import url(https://fonts.googleapis.com/css?family=Pathway+Gothic+One);
+@import url(https://fonts.googleapis.com/css?family=Pontano+Sans);
 
 $fontFamily: 'Droid Sans', sans-serif;
 $fontFamily: 'Play', sans-serif;
+$fontFamily: 'Oswald', sans-serif;
+$fontFamily: 'Abel', sans-serif;
+$fontFamily: 'Quicksand', sans-serif;
+$fontFamily: 'Pathway Gothic One', sans-serif;
+$fontFamily: 'Pontano Sans', sans-serif; //good
 
 $fontSize: 14px;
 $themeColor: #364049;
@@ -30,224 +40,9 @@ body {
     font-size: $fontSize;
 }
 
-.main-page-message {
-    text-align: center;
-    font-size: 3em;
-    padding: 50px;
-    color: white;
-}
-.main-upload-zone {
-    text-align: center;
-}
-.main-upload-button {
-    padding: 10px;
-    font-size: 1.5em;
-    background-color: $themeColor;
-    color: white;
-    outline: none;
-    border: solid 2px white;
-}
-.main-upload-button:hover {
-    cursor: pointer;
-    color: black;
-    background-color: white;
-}
-
-
-#controls3d {
-    width: 21em;
-    position: fixed;
-    top: 60px;
-    left: 10px;
-    color: black;
-    z-index: 1;
-    font-size: 1em;
-
-    .panel {
-        padding: 1px 5px;
-        padding-left: 10px;
-        width: 100%;
-        background-color: #F4F4F4;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-        margin-bottom: 5px;
-    }
-
-    label {
-        font-size: 1em;
-        min-width: 3.5em;
-        display: inline-block;
-        margin-right: 10px;
-    }
-
-    label.title {
-        font-size: 1em;
-        font-weight: bold;
-    }
-
-    label.units {
-        margin-left: 5px;
-        margin-right: 0;
-        min-width: 0;
-    }
-
-    input[type="number"].units {
-        width: 7em;
-        font-size: 1em;
-        padding: 3px;
-        outline-color: $themeColor;
-    }
-    input[type="number"].relative {
-        width: 4em;
-        font-size: 1em;
-        padding: 3px;
-        outline-color: $themeColor;
-    }
-
-    .file-class {
-        background-color: #F15C24;
-        background-color: #FDD460;
-        color: white;
-        color: black;
-        .control-button {
-            background-color: #F15C24;
-            background-color: #FDD460;
-            color: white;
-            color: black;
-            border: solid 1px black;
-        }
-        .control-button-selected {
-            background-color: $themeColor;
-            color: white;
-        }
-    }
-    .units-class {
-        background-color: #E3D9CD;
-        background-color: #6EB8D3;
-        background-color: #E5D4CD;
-        background-color: #D1CFA6;
-        background-color: #C2B664;
-        background-color: #DADCD9;
-    }
-    .options-3d-class {
-        background-color: #D1CFA6;
-        .control-button {
-            background-color: #D1CFA6;
-            color: white;
-            color: black;
-            border: solid 1px black;
-        }
-        .control-button-selected {
-            background-color: $themeColor;
-            color: white;
-        }
-    }
-}
-
-.control-button {
-    background-color: white;
-    color: black;
-    border: solid 1px $themeColor;
-    display: inline-block;
-    margin-right: 5px;
-    min-width: 30px;
-    min-height: 30px;
-    cursor: pointer;
-    padding: 0 5px;
-    outline: none;
-}
-
-.control-button:hover {
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-}
-
-.control-button-selected {
-    background-color: $themeColor;
-    color: white;
-}
-
-.file-uploader {
-    display: inline-block;
-}
-.file-uploader-file {
-    margin-top: 10px;
-    margin-left: calc(3.5em + 10px);
-}
-
-.controls-row {
-    width: 100%;
-    padding: 4px 0;
-
-}
-
-.times {
-    padding: 0 5px;
-}
-
-
-#viewer3d {
-    width: 100%;
-    height: 100%;
-    bottom:0;
-    position: fixed;
-    z-index: 0;
-}
-
-#close3DPreviewModalButton {
-    z-index: 5;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 1em;
-    padding: 10px;
-}
 
 @media screen and (max-width: 500px) {
-    #controls3d {
-        position: fixed;
-        top: 0;
-        left: 0px;
-        z-index: 1;
-        font-size: 1em;
-        width: 100%;
-        height: 100%;
-        background-color: $themeColor;
 
-        .panel {
-            padding: 1px 5px;
-            padding-left: 10px;
-            width: 100%;
-            background-color: #F4F4F4;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-            margin-bottom: 5px;
-        }
-
-        .file-class {
-            background-color: #FDD460;
-            color: black;
-            .control-button {
-                background-color: #FDD460;
-                color: black;
-            }
-            .control-button-selected {
-                background-color: $themeColor;
-                color: white;
-            }
-        }
-        .units-class {
-            background-color: #DADCD9;
-        }
-        .options-3d-class {
-            background-color: #D1CFA6;
-            .control-button {
-                background-color: #D1CFA6;
-                color: black;
-            }
-            .control-button-selected {
-                background-color: $themeColor;
-                color: white;
-            }
-        }
-    }
 }
 
 @media screen and (max-width: 1500px) {

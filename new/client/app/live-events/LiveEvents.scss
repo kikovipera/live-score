@@ -1,4 +1,6 @@
 
+$textColor: rgba(255,255,255,1);
+$textColor: black;
 
 .SSUI-LiveEvents {
     width: 100%;
@@ -10,6 +12,9 @@
     display: flex;
     flex-flow: row;
     position: relative;
+    background-color: #D3D9E5;
+    padding: 5px 0;
+    box-shadow: 0 0 5px 7px rgba(0, 0, 0, 0.2);
 }
 
 .SSUI-LiveEvents-Header-Home {
@@ -19,6 +24,7 @@
     text-align: center;
     display: flex;
     flex-flow: column;
+    color: $textColor;
 }
 
 .SSUI-LiveEvents-Header-Data {
@@ -27,16 +33,18 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
+    color: $textColor;
 }
 
 .SSUI-LiveEvents-Header-Data-Score {
-    font-size: 3em;
+    font-size: 4em;
     text-align: center;
 }
 
 .SSUI-LiveEvents-Header-Data-Time {
-    font-size: 2em;
+    font-size: 1.75em;
     text-align: center;
+    margin-top: 1em;
 }
 
 .SSUI-LiveEvents-Header-Away {
@@ -46,6 +54,7 @@
     text-align: center;
     display: flex;
     flex-flow: column;
+    color: $textColor;
 }
 
 .SSUI-LiveEvents-Header-Logo {
@@ -63,6 +72,8 @@
 .SSUI-LiveEvents-List {
     margin-top: 1em;
     padding: 0 0.5em;
+    height: 30em;
+    overflow-y: auto;
 }
 
 .SSUI-LiveEvents-List-ExpandCollapse {
@@ -70,13 +81,13 @@
     right: 0;
     top: 0;
     background: orange;
-    color: white;
+    color: $textColor;
     display: block;
     border: none;
     outline: none;
     padding: 0;
     margin: 0;
-    border-radius: 50%;
+    // border-radius: 50%;
     width: 20px;
     height: 20px;
     font-size: 17px;

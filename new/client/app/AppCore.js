@@ -59,7 +59,19 @@ const events = [
     <LiveEvent type="home" {...eventData} key='1'  onPlayerClick={playerClick}/>,
     <LiveEvent type="home" {...eventData} key='2'  onPlayerClick={playerClick}/>,
     <LiveEvent type="away" {...eventData} key='3'  onPlayerClick={playerClick}/>,
-    <LiveEvent type="home" {...eventData2} key='4' onPlayerClick={playerClick}/>
+    <LiveEvent type="home" {...eventData2} key='4' onPlayerClick={playerClick}/>,
+    <LiveEvent type="home" {...eventData} key='5'  onPlayerClick={playerClick}/>,
+    <LiveEvent type="home" {...eventData} key='6'  onPlayerClick={playerClick}/>,
+    <LiveEvent type="away" {...eventData} key='7'  onPlayerClick={playerClick}/>,
+    // <LiveEvent type="home" {...eventData2} key='8' onPlayerClick={playerClick}/>,
+    // <LiveEvent type="home" {...eventData} key='9'  onPlayerClick={playerClick}/>,
+    // <LiveEvent type="home" {...eventData} key='10'  onPlayerClick={playerClick}/>,
+    // <LiveEvent type="away" {...eventData} key='11'  onPlayerClick={playerClick}/>,
+    // <LiveEvent type="home" {...eventData2} key='12' onPlayerClick={playerClick}/>,
+    // <LiveEvent type="home" {...eventData} key='13'  onPlayerClick={playerClick}/>,
+    // <LiveEvent type="home" {...eventData} key='14'  onPlayerClick={playerClick}/>,
+    // <LiveEvent type="away" {...eventData} key='15'  onPlayerClick={playerClick}/>,
+    // <LiveEvent type="home" {...eventData2} key='16' onPlayerClick={playerClick}/>
 ];
 
 ReactDOM.render((
