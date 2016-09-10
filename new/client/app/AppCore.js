@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import STLModel from './STLModel';
-import Field2D from './2d/field2d';
+import Field2D from './field-2d/Field2D';
 require('./AppStyle.scss');
 
 import LiveEvents from './live-events/LiveEvents';
@@ -74,10 +74,16 @@ const events = [
     // <LiveEvent type="home" {...eventData2} key='16' onPlayerClick={playerClick}/>
 ];
 
+/*
+<LiveEvents homeTeam={homeTeam} awayTeam={awayTeam} matchData={matchData}>
+    {events}
+</LiveEvents>
+*/
+
 ReactDOM.render((
     <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
-        <LiveEvents homeTeam={homeTeam} awayTeam={awayTeam} matchData={matchData}>
-            {events}
-        </LiveEvents>
+
+
+        <Field2D/>
     </div>
 ), document.getElementById('app'));
