@@ -160,6 +160,6 @@ const events = [
 
 ReactDOM.render((
     <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
-        <Field2D textureUrl="" perspective="false" showPlayerName="true" showTShirtNr="true" onPlayerClick="" homeTeam={homeTeam} awayTeam={homeTeam}/>
+        <Field2D textureUrl="" perspective="true" onPlayerClick="" homeTeam={homeTeam} awayTeam={homeTeam}/>
     </div>
 ), document.getElementById('app'));

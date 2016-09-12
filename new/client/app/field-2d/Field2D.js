@@ -32,8 +32,6 @@ export default class Field2D extends Component {
 
     displayTShirts = () => {
         let perspective = this.props.perspective || true;
-        let showPlayerName = this.props.showPlayerName || true;
-        let showTShirtNr = this.props.showTShirtNr || true;
 
         var svg = d3.select('#fieldContainer').append('svg');
 
@@ -55,8 +53,11 @@ export default class Field2D extends Component {
 
         var homeGroup = svg.append('g');
 
+        let homeTeamPlayerData = this.props.homeTeam.playerPositionById.map((idList)=>idList.map((id)=>this.getPlayerById(id, this.props.homeTeam)));
+        let awayTeamPlayerData = this.props.awayTeam.playerPositionById.map((idList)=>idList.map((id)=>this.getPlayerById(id, this.props.awayTeam)));
+
         homeGroup.selectAll('image')
-            .data(this.props.homeTeam.playerPositionById.map((idList)=>idList.map((id)=>this.getPlayerById(id, this.props.homeTeam))))
+            .data(homeTeamPlayerData)
             .enter()
             .append('g')
             .selectAll('image')
@@ -74,90 +75,196 @@ export default class Field2D extends Component {
                 y: (playerData, i, j) => (i * heightSteps1[j]) + heightSteps1[j] / 2,
                 width: '75px',
                 height: '75px',
-                transform: 'translate(50, 35)'
+                transform: 'translate(10, 35)'
             })
             .on('click', (playerData, i, j) => this.props.onPlayerClick(homeTeam.id, d));
 
-        // if (showTShirtNr) {
-        //     homeGroup.selectAll('rect')
-        //         .data(teamsPositions.t1ShirtNrArr)
-        //         .enter()
-        //         .append('g')
-        //         .selectAll('rect')
-        //         .data(function(d, i, j) {
-        //             return d;
-        //         })
-        //         .enter()
-        //         .append('rect')
-        //         .attr({
-        //             fill: 'black',
-        //             x: function(d, i, j) {
-        //                 return (d < 10 ? -31 : -22) + (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
-        //             },
-        //             y: function(d, i, j) {
-        //                 return 32 + (i * heightSteps1[j]) + heightSteps1[j] / 2;
-        //             },
-        //             rx: 10,
-        //             ry: 10,
-        //             width: 35,
-        //             height: 35,
-        //             transform: 'translate(50, 36)'
-        //         });
-        //
-        //     homeGroup.selectAll('text')
-        //         .data(teamsPositions.t1ShirtNrArr)
-        //         .enter()
-        //         .append('g')
-        //         .selectAll('text')
-        //         .data(function(d, i, j) {
-        //             return d;
-        //         })
-        //         .enter()
-        //         .append('text')
-        //         .text(function(d) {
-        //             return d;
-        //         })
-        //         .attr({
-        //             fill: 'white',
-        //             x: function(d, i, j) {
-        //                 return -20 + (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
-        //             },
-        //             y: function(d, i, j) {
-        //                 return 60 + (i * heightSteps1[j]) + heightSteps1[j] / 2;
-        //             },
-        //             width: '75px',
-        //             height: '75px',
-        //             transform: 'translate(50, 35)'
-        //         });
-        // }
-        //
-        // var awayGroup = svg.append('g');
-        //
-        // awayGroup.selectAll('image')
-        //     .data(teamsPositions.t2ShirtNrArr)
-        //     .enter()
-        //     .append('g')
-        //     .selectAll('image')
-        //     .data(function(d, i, j) {
-        //         return d;
-        //     })
-        //     .enter()
-        //     .append('image')
-        //     .attr('xlink:href', teamsPositions.t2ShirtImg)
-        //     .attr({
-        //         x: function(d, i, j) {
-        //             return (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2) * 1 / svgHeight * 250);
-        //         },
-        //         y: function(d, i, j) {
-        //             return (i * heightSteps2[j]) + heightSteps2[j] / 2;
-        //         },
-        //         width: '75px',
-        //         height: '75px',
-        //         transform: 'translate(-130, 35)'
-        //     })
-        //     .on('click', function(d, i, j) {
-        //         callbackPlayerClick('away', d);
-        //     });
+        let tmpBg = homeGroup.selectAll('rect')
+            .data(homeTeamPlayerData)
+            .enter()
+            .append('g')
+            .selectAll('rect')
+            .data((idList) => idList)
+            .enter();
+
+        let tmpTxt = homeGroup.selectAll('text')
+            .data(homeTeamPlayerData)
+            .enter()
+            .append('g')
+            .selectAll('text')
+            .data((idList) => idList)
+            .enter();
+
+        tmpBg
+            .append('rect')
+            .attr({
+                fill: 'rgba(0,0,0,0.75)',
+                x: (playerData, i, j) => {
+                    if (perspective === 'true') {
+                        return (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
+                    }
+                    return (j * widthStep1);
+                },
+                y: (playerData, i, j) => (i * heightSteps1[j]) + heightSteps1[j] / 2,
+                width: (playerData) => (playerData.name).length * 6.5, // TODO
+                height: 20,
+                // transform: (playerData) => 'translate('+(40 + (playerData.name).length * 6.5 < 75 ? (75-(playerData.name).length * 6.5) : 0)+', 110)'
+                transform: (playerData) => 'translate(20, 110)'
+            });
+        tmpTxt
+            .append('text')
+            .text((playerData) => playerData.name)
+            .attr({
+                fill: 'white',
+                x: (playerData, i, j) => {
+                    if (perspective === 'true') {
+                        return (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
+                    }
+                    return (j * widthStep1);
+                },
+                y: (playerData, i, j) => (i * heightSteps1[j]) + heightSteps1[j] / 2,
+                'font-size': 12,
+                transform: (playerData) => 'translate(25, 124)'
+            });
+
+        tmpBg
+            .append('rect')
+            .attr({
+                fill: '#eee',
+                x: (playerData, i, j) => {
+                    if (perspective === 'true') {
+                        return (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
+                    }
+                    return (j * widthStep1);
+                },
+                y: (playerData, i, j) => (i * heightSteps1[j]) + heightSteps1[j] / 2,
+                width: 20, // TODO
+                height: 20,
+                transform: (playerData) => 'translate(0, 110)'
+            });
+
+        tmpTxt
+            .append('text')
+            .text((playerData) => playerData.tShirtNr)
+            .attr({
+                fill: 'black',
+                x: (playerData, i, j) => {
+                    if (perspective === 'true') {
+                        return (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
+                    }
+                    return (j * widthStep1);
+                },
+                y: (playerData, i, j) => (i * heightSteps1[j]) + heightSteps1[j] / 2,
+                'font-size': 14,
+                transform: (playerData) => 'translate('+(parseInt(playerData.tShirtNr) < 10 ? 6 : 4)+', 125)'
+            });
+
+
+        var awayGroup = svg.append('g');
+
+        awayGroup.selectAll('image')
+            .data(awayTeamPlayerData)
+            .enter()
+            .append('g')
+            .selectAll('image')
+            .data((idList) => idList)
+            .enter()
+            .append('image')
+            .attr('xlink:href', (playerData) => playerData.tShirtImgUrl)
+            .attr({
+                x: (playerData, i, j) => {
+                    if (perspective === 'true') {
+                        return (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2) * 1 / svgHeight * 250);
+                    }
+                    return (svgWidth - j * widthStep2);
+                },
+                y: (playerData, i, j) => (i * heightSteps2[j]) + heightSteps2[j] / 2,
+                width: '75px',
+                height: '75px',
+                transform: 'translate(-120, 35)'
+            })
+            .on('click', (playerData, i, j) => this.props.onPlayerClick(awayTeam.id, d));
+
+        tmpBg = awayGroup.selectAll('rect')
+            .data(awayTeamPlayerData)
+            .enter()
+            .append('g')
+            .selectAll('rect')
+            .data((idList) => idList)
+            .enter();
+
+        tmpTxt = awayGroup.selectAll('text')
+            .data(awayTeamPlayerData)
+            .enter()
+            .append('g')
+            .selectAll('text')
+            .data((idList) => idList)
+            .enter();
+
+            tmpBg
+                .append('rect')
+                .attr({
+                    fill: 'rgba(0,0,0,0.75)',
+                    x: (playerData, i, j) => {
+                        if (perspective === 'true') {
+                            return (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2) * 1 / svgHeight * 250);
+                        }
+                        return (svgWidth - j * widthStep2);
+                    },
+                    y: (playerData, i, j) => (i * heightSteps2[j]) + heightSteps2[j] / 2,
+                    width: (playerData) => (playerData.name).length * 6.5, // TODO
+                    height: 20,
+                    // transform: (playerData) => 'translate('+(40 + (playerData.name).length * 6.5 < 75 ? (75-(playerData.name).length * 6.5) : 0)+', 110)'
+                    transform: (playerData) => 'translate(-120, 110)'
+                });
+            tmpTxt
+                .append('text')
+                .text((playerData) => playerData.name)
+                .attr({
+                    fill: 'white',
+                    x: (playerData, i, j) => {
+                        if (perspective === 'true') {
+                            return (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2) * 1 / svgHeight * 250);
+                        }
+                        return (svgWidth - j * widthStep2);
+                    },
+                    y: (playerData, i, j) => (i * heightSteps2[j]) + heightSteps2[j] / 2,
+                    'font-size': 12,
+                    transform: (playerData) => 'translate(-115, 124)'
+                });
+
+            tmpBg
+                .append('rect')
+                .attr({
+                    fill: '#eee',
+                    x: (playerData, i, j) => {
+                        if (perspective === 'true') {
+                            return (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2) * 1 / svgHeight * 250);
+                        }
+                        return (svgWidth - j * widthStep2);
+                    },
+                    y: (playerData, i, j) => (i * heightSteps2[j]) + heightSteps2[j] / 2,
+                    width: 20, // TODO
+                    height: 20,
+                    transform: (playerData) => 'translate('+((playerData.name).length * 6.5 - 120)+', 110)'
+                });
+
+            tmpTxt
+                .append('text')
+                .text((playerData) => playerData.tShirtNr)
+                .attr({
+                    fill: 'black',
+                    x: (playerData, i, j) => {
+                        if (perspective === 'true') {
+                            return (svgWidth - j * widthStep2 - 125) + (((i * heightSteps2[j]) + heightSteps2[j] / 2) * 1 / svgHeight * 250);
+                        }
+                        return (svgWidth - j * widthStep2);
+                    },
+                    y: (playerData, i, j) => (i * heightSteps2[j]) + heightSteps2[j] / 2,
+                    'font-size': 14,
+                    transform: (playerData) => 'translate('+((parseInt(playerData.tShirtNr) < 10 ? 6 : 4) + (playerData.name).length * 6.5 - 120)+', 125)'
+                });
+
         //
         // if (showTShirtNr) {
         //     awayGroup.selectAll('rect')
