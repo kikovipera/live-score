@@ -5,60 +5,36 @@ require('./Field2D.scss');
 
 export default class Field2D extends Component {
 
-    homeTeam = {
-        name: 'Barcelona',
-        logoUrl: 'textures/fcb.png',
-        tShirtImgUrl: 'textures/barcelona-tshirt.png',
-        tShirtNrArray: [
-            ['1'],
-            ['2', '5', '3', '22'],
-            ['6', '16', '8', '9', '10'],
-            ['4']
-        ]
-    }
-
-    awayTeam = {
-        name: 'Real Madrid',
-        logoUrl: 'textures/rm.png',
-        tShirtImgUrl: 'textures/barcelona-tshirt.png',
-        tShirtNrArray: [
-            ['1'],
-            ['15', '3', '4', '12'],
-            ['24', '14'],
-            ['22', '10', '7'],
-            ['9']
-        ]
-    }
-
     state = {
         windowWidth: window.innerWidth
     }
 
-    handleResize(e) {
+    handleResize = (e) => {
         this.setState({
             windowWidth: window.innerWidth
         });
-        // this.refs.STLViewer.applyResize();
     }
 
     componentDidMount() {
-        window.addEventListener('resize', this.handleResize.bind(this));
+        window.addEventListener('resize', this.handleResize);
         this.displayTShirts();
     }
-
-    // shouldComponentUpdate: function(props) {
-    //     d3.select(this.getDOMNode())
-    //         .call(chart(props));
-    //     return false;
-    // }
-
 
     callbackPlayerClick = () => {
         console.log(click);
     }
 
-    // displayTShirts = (teamsPositions, containerId, showTShirtNr, callbackPlayerClick) => {
+    getPlayerById = (playerId, teamData) => {
+        let result = teamData.players.filter((player) => Number(player.id) === Number(playerId))[0];
+        // console.log('aaa', playerId);
+        return result;
+    }
+
     displayTShirts = () => {
+        let perspective = this.props.perspective || true;
+        let showPlayerName = this.props.showPlayerName || true;
+        let showTShirtNr = this.props.showTShirtNr || true;
+
         var svg = d3.select('#fieldContainer').append('svg');
 
         svg.attr({
@@ -71,44 +47,36 @@ export default class Field2D extends Component {
 
         var halfSvgWidth = svgWidth / 2;
 
-        var widthStep1 = halfSvgWidth / this.homeTeam.tShirtNrArray.length;
-        var widthStep2 = halfSvgWidth / this.awayTeam.tShirtNrArray.length;
+        var widthStep1 = halfSvgWidth / this.props.homeTeam.playerPositionById.length;
+        var widthStep2 = halfSvgWidth / this.props.awayTeam.playerPositionById.length;
 
-        var heightSteps1 = this.homeTeam.tShirtNrArray.map(function(elem) {
-            return parseInt(svgHeight / (elem.length));
-        });
-        var heightSteps2 = this.awayTeam.tShirtNrArray.map(function(elem) {
-            return parseInt(svgHeight / (elem.length));
-        });
+        var heightSteps1 = this.props.homeTeam.playerPositionById.map((elem) => parseInt(svgHeight / (elem.length)));
+        var heightSteps2 = this.props.awayTeam.playerPositionById.map((elem) => parseInt(svgHeight / (elem.length)));
 
         var homeGroup = svg.append('g');
 
         homeGroup.selectAll('image')
-            .data(this.homeTeam.tShirtNrArray)
+            .data(this.props.homeTeam.playerPositionById.map((idList)=>idList.map((id)=>this.getPlayerById(id, this.props.homeTeam))))
             .enter()
             .append('g')
             .selectAll('image')
-            .data(function(d, i, j) {
-                return d;
-            })
+            .data((idList) => idList)
             .enter()
             .append('image')
-            .attr('xlink:href', this.homeTeam.tShirtImgUrl)
+            .attr('xlink:href', (playerData) => playerData.tShirtImgUrl)
             .attr({
-                x: function(d, i, j) {
-                    // return (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
+                x: (playerData, i, j) => {
+                    if (perspective === 'true') {
+                        return (j * widthStep1 + 75) - (((i * heightSteps1[j]) + heightSteps1[j] / 2) * 1 / svgHeight * (150));
+                    }
                     return (j * widthStep1);
                 },
-                y: function(d, i, j) {
-                    return (i * heightSteps1[j]) + heightSteps1[j] / 2;
-                },
+                y: (playerData, i, j) => (i * heightSteps1[j]) + heightSteps1[j] / 2,
                 width: '75px',
                 height: '75px',
                 transform: 'translate(50, 35)'
             })
-            .on('click', function(d, i, j) {
-                this.callbackPlayerClick('home', d);
-            }.bind(this));
+            .on('click', (playerData, i, j) => this.props.onPlayerClick(homeTeam.id, d));
 
         // if (showTShirtNr) {
         //     homeGroup.selectAll('rect')
@@ -254,6 +222,7 @@ export default class Field2D extends Component {
                         viewBox="0 0 1150 720"
                         id="svg-field"
                         stroke="black"
+                        style={ this.props.perspective === 'true' ? {transform: 'perspective(1200px) rotateX(45deg)', position: 'absolute'} : {position: 'absolute'}}
                         >
                 <rect x="0" y="0" width="1150" height="720" fill="green"></rect>
                 <path d="M 575,20 L 50,20 50,700 1100,700 1100,20 575,20 575,700 z" stroke="white" strokeWidth="2" fill="green"></path>
@@ -277,7 +246,7 @@ export default class Field2D extends Component {
 
         let SVGField = <img
                 width="1150" height="720"
-                style={{transform: 'perspective(1200px) rotateX(45deg)', position: 'absolute'}}
+                style={ this.props.perspective === 'true' ? {transform: 'perspective(1200px) rotateX(45deg)', position: 'absolute'} : {position: 'absolute'}}
                 src="textures/default-field-texture.png"/>
 
         return (

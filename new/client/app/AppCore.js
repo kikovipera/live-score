@@ -11,8 +11,84 @@ import LiveEvent from './live-events/LiveEvent';
 // <Field2D/>
 
 const homeTeam = {
-    name: 'team 1',
-    logoUrl: '/textures/barcelona-tshirt.png'
+    id: 1,
+    name: 'home Team',
+    logoUrl: '/textures/barcelona-tshirt.png',
+    playerPositionById: [
+        [1],
+        [2, 3, 4, 5],
+        [6, 7],
+        [8, 9, 10],
+        [11]
+    ],
+    players: [
+        {
+            id: 1,
+            name: 'player name',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '1'
+        },
+        {
+            id: 2,
+            name: 'player name 2',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '2'
+        },
+        {
+            id: 3,
+            name: 'player name 3',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '3'
+        },
+        {
+            id: 4,
+            name: 'player name 4',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '4'
+        },
+        {
+            id: 5,
+            name: 'player name 5',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '5'
+        },
+        {
+            id: 6,
+            name: 'player name 6',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '6'
+        },
+        {
+            id: 7,
+            name: 'player name 7',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '7'
+        },
+        {
+            id: 8,
+            name: 'player name 8',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '8'
+        },
+        {
+            id: 9,
+            name: 'player name 9',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '9'
+        },
+        {
+            id: 10,
+            name: 'player 10',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '10'
+        },
+        {
+            id: 11,
+            name: 'player 11',
+            tShirtImgUrl: '/textures/barcelona-tshirt.png',
+            tShirtNr: '11'
+        }
+    ]
 }
 
 const awayTeam = {
@@ -80,10 +156,10 @@ const events = [
 </LiveEvents>
 */
 
+
+
 ReactDOM.render((
     <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
-
-
-        <Field2D/>
+        <Field2D textureUrl="" perspective="false" showPlayerName="true" showTShirtNr="true" onPlayerClick="" homeTeam={homeTeam} awayTeam={homeTeam}/>
     </div>
 ), document.getElementById('app'));
