@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import STLModel from './STLModel';
-import Field2D from './field-2d/Field2D';
-require('./AppStyle.scss');
-
 import LiveEvents from './live-events/LiveEvents';
 import LiveEvent from './live-events/LiveEvent';
+import Field2D from './field-2d/Field2D';
+import Field3D from './field-3d/Field3D';
+require('./AppStyle.scss');
 
 // <STLModel/>
 // <Field2D/>
@@ -157,9 +156,10 @@ const events = [
 */
 
 
+// <Field2D textureUrl="" perspective="true" onPlayerClick="" homeTeam={homeTeam} awayTeam={homeTeam}/>
 
 ReactDOM.render((
     <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
-        <Field2D textureUrl="" perspective="true" onPlayerClick="" homeTeam={homeTeam} awayTeam={homeTeam}/>
+        <Field3D textureUrl="" perspective="true" onPlayerClick="" homeTeam={homeTeam} awayTeam={homeTeam}/>
     </div>
 ), document.getElementById('app'));
