@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import Modal from 'react-modal'; // TODO remove
 import LiveEvents from './live-events/LiveEvents';
 import LiveEvent from './live-events/LiveEvent';
 import Field2D from './field-2d/Field2D';
@@ -127,7 +128,7 @@ const eventData2 = {
 }
 
 const playerClick = (player) => {
-    alert(JSON.stringify(player));
+    console.log(JSON.stringify(player));
 }
 
 const events = [
@@ -160,6 +161,6 @@ const events = [
 
 ReactDOM.render((
     <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
-        <Field3D textureUrl="" perspective="true" onPlayerClick="" homeTeam={homeTeam} awayTeam={homeTeam}/>
+        <Field3D textureUrl="textures/default-field-texture.png" onPlayerClick={playerClick} homeTeam={homeTeam} awayTeam={homeTeam}/>
     </div>
 ), document.getElementById('app'));

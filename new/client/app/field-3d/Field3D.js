@@ -1,7 +1,5 @@
 import React, {PropTypes, Component} from 'react';
 import ReactDOM from 'react-dom';
-// import Modal from 'react-modal'; // TODO remove
-import FileInput from './file-reader-input';
 import STLViewer from './STLViewer';
 
 export default class Field3D extends Component {
@@ -10,7 +8,7 @@ export default class Field3D extends Component {
         windowWidth: window.innerWidth
     }
 
-    handleResize(e) {
+    handleResize = (e) => {
         this.setState({
             modelChanged: false,
             windowWidth: window.innerWidth
@@ -18,22 +16,15 @@ export default class Field3D extends Component {
         this.refs.STLViewer.applyResize();
     }
 
-    componentDidMount() {
-        window.addEventListener('resize', this.handleResize.bind(this));
-    }
+    componentDidMount = () => window.addEventListener('resize', this.handleResize);
 
-    render() {
-        return (
+    render = () => (
             <div>
                 <STLViewer
                     width={window.innerWidth}
                     height={window.innerHeight}
-                    backgroundColor='#364049'
-                    rotate={true}
-                    orbitControls={true}
                     {...this.props}
                     ref="STLViewer"/>
             </div>
         );
-    }
 }
