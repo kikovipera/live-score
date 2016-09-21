@@ -170,6 +170,18 @@ class Appl extends React.Component {
         textureUrl: 'textures/icehockey.png'
     }
 
+    soccerField2D = {
+        width: 1200,
+        height: 780,
+        textureUrl: 'textures/soccer.png'
+    }
+
+    iceHockeyField2D = {
+        width: 68 * 2.15 * 10,
+        height: 68 * 10,
+        textureUrl: 'textures/icehockey.png'
+    }
+
     playerClick = (player) => {
         this.setState({
             showModal: true,
@@ -230,6 +242,7 @@ class Appl extends React.Component {
     render = () => (
         <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
             <Field3D field={this.soccerField} onPlayerClick={this.playerClick} homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate} />
+            <Field2D field={this.soccerField2D} onPlayerClick={this.playerClick} perspective="true" homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate}/>
             <Modal
                 isOpen={this.state.showModal}
                 style={this.modalStyle}
