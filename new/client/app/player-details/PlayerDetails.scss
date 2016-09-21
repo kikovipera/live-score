@@ -1,0 +1,53 @@
+
+.SSUI-PlayerDetais {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row;
+}
+
+.SSUI-PlayerDetais-Bio {
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+}
+
+.SSUI-PlayerDetais-Bio-Image {
+    padding: 10px;
+    width: 50%;
+    height: auto;
+}
+
+
+.SSUI-PlayerDetais-Bio-NameRow {
+    height: 3em;
+    font-size: 1.5em;
+    display: flex;
+    flex-flow: row;
+}
+
+.SSUI-PlayerDetais-Bio-Row {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.SSUI-PlayerDetais-Bio-Label {
+    // display: flex;
+    // display: inline-block;
+}
+
+
+
+.SSUI-PlayerDetais-Stats {
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+}
+
+.SSUI-PlayerDetais-Stats-Row {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}

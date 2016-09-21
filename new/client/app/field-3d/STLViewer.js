@@ -30,6 +30,10 @@ class STLViewer extends Component {
         this.init();
     }
 
+    shouldComponentUpdate = (nextProps, nestState) => {
+        return nextProps.shouldUpdate;
+    }
+
     componentDidUpdate = () => this.init();
 
     applyResize = () => {
@@ -89,8 +93,8 @@ class STLViewer extends Component {
     }
 
     loadField = () => {
-        let fieldWidth = 105;
-        let fieldHeight = 68;
+        let fieldWidth = this.props.field.width;
+        let fieldHeight = this.props.field.height;
 
         let halfFieldWidth = fieldWidth / 2;
         let widthStep1 = halfFieldWidth / this.props.homeTeam.playerPositionById.length;
@@ -123,7 +127,7 @@ class STLViewer extends Component {
                 new THREE.MeshBasicMaterial({color: marginColor}),
             ];
 
-            this.mesh = new THREE.Mesh(new THREE.CubeGeometry(fieldWidth, 1, fieldHeight), new THREE.MeshFaceMaterial(materials));
+            this.mesh = new THREE.Mesh(new THREE.CubeGeometry(fieldWidth, 0, fieldHeight), new THREE.MeshFaceMaterial(materials));
             let geometry = this.mesh.geometry;
 
             geometry.center();
@@ -135,7 +139,7 @@ class STLViewer extends Component {
 
         let img = new Image();
         img.onload = createMeshThenRender;
-        img.src = this.props.textureUrl;
+        img.src = this.props.field.textureUrl;
 
         homeTeamPlayerData.forEach((players, i) => {
             players.forEach((player, j) => {
