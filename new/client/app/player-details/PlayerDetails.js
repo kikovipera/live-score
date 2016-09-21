@@ -20,6 +20,10 @@ export default class PlayerDetails extends Component {
                 <div className="SSUI-PlayerDetais-Bio-Row">
                     <img className="SSUI-PlayerDetais-Bio-Image" src={this.props.player.tShirtImgUrl}/>
                 </div>
+                <div className="SSUI-PlayerDetais-Bio-NameRow">
+                    <div className="SSUI-PlayerDetais-Bio-Label">{this.props.player.name}</div>
+                    <div className="SSUI-PlayerDetais-Bio-Label SSUI-PlayerDetais-Bio-NameRow-tShirtNr">{this.props.player.tShirtNr}</div>
+                </div>
                 {bio}
             </div>
             <div className="SSUI-PlayerDetais-Stats">

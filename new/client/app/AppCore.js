@@ -8,11 +8,6 @@ import Field3D from './field-3d/Field3D';
 import PlayerDetails from './player-details/PlayerDetails';
 require('./AppStyle.scss');
 
-// <STLModel/>
-// <Field2D/>
-
-
-
 class Appl extends React.Component {
     modalStyle = {
       overlay : {
@@ -25,19 +20,17 @@ class Appl extends React.Component {
       },
       content : {
         position                   : 'absolute',
-        top                        : '40px',
-        left                       : '40px',
-        right                      : '40px',
-        bottom                     : '40px',
+        width: '400px',
+        height: '400px',
+        margin: '0 auto',
         border                     : '1px solid #ccc',
         background                 : '#fff',
         overflow                   : 'auto',
         WebkitOverflowScrolling    : 'touch',
         borderRadius               : '4px',
         outline                    : 'none',
-        padding                    : '20px',
-        width: '300px'
-
+        padding                    : '10px',
+        backgroundColor: '#1E1D25'
       }
     };
 
@@ -170,6 +163,12 @@ class Appl extends React.Component {
         textureUrl: 'textures/icehockey.png'
     }
 
+    basketball = {
+        width: 89,
+        height: 51,
+        textureUrl: 'textures/basketball.png'
+    }
+
     soccerField2D = {
         width: 1200,
         height: 780,
@@ -177,6 +176,12 @@ class Appl extends React.Component {
     }
 
     iceHockeyField2D = {
+        width: 68 * 2.15 * 10,
+        height: 68 * 10,
+        textureUrl: 'textures/icehockey.png'
+    }
+
+    basketball2D = {
         width: 68 * 2.15 * 10,
         height: 68 * 10,
         textureUrl: 'textures/icehockey.png'
@@ -194,14 +199,17 @@ class Appl extends React.Component {
                 'Nationality': 'Argentina'
             },
             playerStateData:  {
-                'Age': '29',
-                'Height': '1.85 cm',
-                'Weight': '73 kg',
-                'Nationality': 'Argentina'
+                'Total Goals': '1',
+                'Goal Assists': '1',
+                'Shots On Target': '3',
+                'Total Shots': '3',
+                'Fouls Committed': '1',
+                'Fouls Suffered': '2',
+                'Red Cards': '0',
+                'Yellow Cards': '1'
             }
 
-        })
-        console.log(JSON.stringify(player));
+        });
     }
 
     closeModal = () => this.setState({showModal: false});
@@ -241,7 +249,7 @@ class Appl extends React.Component {
 
     render = () => (
         <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
-            <Field3D field={this.soccerField} onPlayerClick={this.playerClick} homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate} />
+            <Field3D field={this.basketball} onPlayerClick={this.playerClick} homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate} />
             <Field2D field={this.soccerField2D} onPlayerClick={this.playerClick} perspective="true" homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate}/>
             <Modal
                 isOpen={this.state.showModal}
@@ -249,6 +257,7 @@ class Appl extends React.Component {
                 onRequestClose={this.closeModal}
                 >
                 <PlayerDetails player={this.state.playerData} bio={this.state.playerBioData} stats={this.state.playerStateData} />
+                <div style={{width: '100%', bottom: 0, display: 'block'}}><button style={{float: 'right', padding: '5px'}} onClick={this.closeModal}>Close</button></div>
             </Modal>
         </div>
     );
