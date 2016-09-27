@@ -1,0 +1,78 @@
+.SSUI-GameStats {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    padding: 0;
+}
+
+.SSUI-GameStats-Zone {
+    display: flex;
+    flex-flow: column;
+    padding: 0;
+}
+
+.SSUI-GameStats-Player {
+    display: flex;
+    flex-flow: row;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.25);
+}
+
+.SSUI-GameStats-TShirtNr {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    min-width: 20px;
+}
+
+.SSUI-GameStats-PlayerName {
+    flex-grow: 1;
+    padding: 0 5px;
+}
+
+.SSUI-GameStats-Text-Button {
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 5px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.SSUI-GameStats-Stats {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding: 2px 5px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.25);
+    background-color: #ccc;
+    margin: 0 5px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.75);
+}
+
+.SSUI-GameStats-Stats-Number {
+    text-align: center;
+    padding: 0 5px;
+}
+
+.SSUI-GameStats-Stats-Type {
+    text-align: center;
+    padding: 0 30px;
+    font-weight: bold;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bigger {
+    flex-grow: 1;
+}

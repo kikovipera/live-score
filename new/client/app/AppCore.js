@@ -6,6 +6,7 @@ import LiveEvent from './live-events/LiveEvent';
 import Field2D from './field-2d/Field2D';
 import Field3D from './field-3d/Field3D';
 import PlayerDetails from './player-details/PlayerDetails';
+import GameStats from './game-stats/GameStats';
 require('./AppStyle.scss');
 
 class Appl extends React.Component {
@@ -187,6 +188,59 @@ class Appl extends React.Component {
         textureUrl: 'textures/icehockey.png'
     }
 
+    gameStats = [
+        {
+            type: 'Total Shots',
+            home: '17',
+            away: '12'
+        },
+        {
+            type: 'Shots On Target',
+            home: '5',
+            away: '7'
+        },
+        {
+            type: 'Pass Accuracy',
+            home: '75%',
+            away: '86%'
+        },
+        {
+            type: 'Aerial Won',
+            home: '70%',
+            away: '30%'
+        },
+        {
+            type: 'Offsides',
+            home: '2',
+            away: '3'
+        },
+        {
+            type: 'Fouls',
+            home: '22',
+            away: '13'
+        },
+        {
+            type: 'Corners',
+            home: '3',
+            away: '5'
+        },
+        {
+            type: 'Throwns',
+            home: '23',
+            away: '24'
+        },
+        {
+            type: 'Dribbles Won',
+            home: '10',
+            away: '17'
+        },
+        {
+            type: 'Tackles',
+            home: '36',
+            away: '28'
+        }
+    ];
+
     playerClick = (player) => {
         this.setState({
             showModal: true,
@@ -247,10 +301,11 @@ class Appl extends React.Component {
         shouldUpdate: true
     }
 
+    // <Field3D field={this.basketball} onPlayerClick={this.playerClick} homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate} />
+    // <Field2D field={this.soccerField2D} onPlayerClick={this.playerClick} perspective="true" homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate}/>
     render = () => (
         <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
-            <Field3D field={this.basketball} onPlayerClick={this.playerClick} homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate} />
-            <Field2D field={this.soccerField2D} onPlayerClick={this.playerClick} perspective="true" homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate}/>
+            <GameStats stats={this.gameStats} homePlayers={this.homeTeam.players} awayPlayers={this.homeTeam.players} onPlayerClick={this.playerClick}/>
             <Modal
                 isOpen={this.state.showModal}
                 style={this.modalStyle}
