@@ -7,6 +7,7 @@ import Field2D from './field-2d/Field2D';
 import Field3D from './field-3d/Field3D';
 import PlayerDetails from './player-details/PlayerDetails';
 import GameStats from './game-stats/GameStats';
+import TeamsTable from './teams-table/TeamsTable';
 require('./AppStyle.scss');
 
 class Appl extends React.Component {
@@ -241,6 +242,24 @@ class Appl extends React.Component {
         }
     ];
 
+    teamsTable = [
+        {
+            name: 'team away',
+            logoUrl: '/textures/barcelona-tshirt.png',
+            stats: [1,2,3,7,5]
+        },
+        {
+            name: 'team away 2',
+            logoUrl: '/textures/barcelona-tshirt.png',
+            stats: [1,2,3,7,5]
+        },
+        {
+            name: 'team away 3',
+            logoUrl: '/textures/barcelona-tshirt.png',
+            stats: [1,2,3,7,5]
+        },
+    ];
+
     playerClick = (player) => {
         this.setState({
             showModal: true,
@@ -301,10 +320,11 @@ class Appl extends React.Component {
         shouldUpdate: true
     }
 
-    // <Field3D field={this.basketball} onPlayerClick={this.playerClick} homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate} />
     // <Field2D field={this.soccerField2D} onPlayerClick={this.playerClick} perspective="true" homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate}/>
     render = () => (
         <div id="fieldContainer2" style={{width:'100%',height:'100%'}}>
+            <Field3D field={this.basketball} onPlayerClick={this.playerClick} homeTeam={this.homeTeam} awayTeam={this.homeTeam} shouldUpdate={this.state.shouldUpdate} />
+            <TeamsTable data={this.teamsTable}/>
             <GameStats stats={this.gameStats} homePlayers={this.homeTeam.players} awayPlayers={this.homeTeam.players} onPlayerClick={this.playerClick}/>
             <Modal
                 isOpen={this.state.showModal}

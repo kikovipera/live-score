@@ -1,0 +1,53 @@
+.SSUI-TeamsTable {
+    width: 100%;
+}
+
+.SSUI-TeamsTable-Teams {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.SSUI-TeamsTable-TeamRow  {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    border-bottom: solid 1px #ccc;
+    align-items: center;
+}
+
+.SSUI-TeamsTable-HeaderRow {
+    align-self: flex-end;
+}
+
+.SSUI-TeamsTable-TeamRow-Rank {
+    padding: 5px;
+    text-align: center;
+    min-width: 20px;
+}
+
+.SSUI-TeamsTable-TeamRow-Logo {
+    text-align: center;
+    padding: 5px;
+    img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.SSUI-TeamsTable-TeamRow-Name {
+    flex-grow: 1;
+    padding: 5px;
+    text-align: center;
+}
+
+.SSUI-TeamsTable-Stats  {
+    display: flex;
+    flex-flow: row;
+}
+
+.SSUI-TeamsTable-Stats-Units {
+    padding: 5px;
+    text-align: center;
+    min-width: 20px;
+}

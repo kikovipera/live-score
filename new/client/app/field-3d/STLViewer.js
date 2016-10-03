@@ -156,6 +156,9 @@ class STLViewer extends Component {
                 this.loadTShirt(player, x, y, false);
             });
         });
+
+        this.addLine(-10, 0, 0, 0, 10, 10);
+        this.addLine2(0, 0, 10, 10);
     }
 
     loadTShirt = (playerData, x, y, isHomeTeam) => {
@@ -221,6 +224,31 @@ class STLViewer extends Component {
         img.onload = createMeshThenRender;
         img.src = playerData.tShirtImgUrl;
     };
+
+    // http://www.lab4games.net/zz85/blog/2014/09/08/rendering-lines-and-bezier-curves-in-three-js-and-webgl/
+    addLine = (x0, y0, x1, y1, x2, y2) => {
+        let geometry = new THREE.Geometry();
+        let curve = new THREE.QuadraticBezierCurve3();
+        curve.v0 = new THREE.Vector3(x0, 0,y0);
+        curve.v1 = new THREE.Vector3(x1, 10,y1);
+        curve.v2 = new THREE.Vector3(x2, 0,y2);
+        for (let j = 0; j < 20; j++) {
+           geometry.vertices.push( curve.getPoint(j / 20) )
+        }
+        let material = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 2 } );
+        let line = new THREE.Line(geometry, material);
+        this.scene.add(line);
+    }
+
+    addLine2 = (x0, y0, x1, y1) => {
+        let geometry = new THREE.Geometry();
+        geometry.vertices.push(new THREE.Vector3(x0, y0, 0));
+        geometry.vertices.push(new THREE.Vector3(x1, y1, 0));
+        let material = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 2 } );
+        let line = new THREE.Line(geometry, material);
+        this.scene.add(line);
+    }
+
 
     render = () => (
             <div id="viewer3d">
